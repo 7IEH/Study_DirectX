@@ -17,6 +17,10 @@ namespace EH
 
 	private:
 		HWND mHwnd;
+
+		static bool global_windowDidResize;
+
+		std::vector<class GameObject*> mGameObjects;
 	};
 }
 

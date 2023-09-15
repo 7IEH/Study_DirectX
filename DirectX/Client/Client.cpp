@@ -4,6 +4,7 @@
 
 #include "Commoninclude.h"
 #include "EHApplication.h"
+#include "EHDX11.h"
 
 EH::Application application;
 
@@ -20,6 +21,8 @@ BOOL			 InitInstance(HINSTANCE, int);
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
 // ------------------ END ------------------
+
+HWND GhWnd;
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance
 	, _In_opt_ HINSTANCE hPrevInstance
@@ -44,7 +47,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance
 	HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_CLIENT));
 
 	MSG msg;
-
 
 	while (true)
 	{
@@ -116,6 +118,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 	}
 
 	application.Initialize(hWnd);
+	GhWnd = hWnd;
 	return TRUE;
 }
 

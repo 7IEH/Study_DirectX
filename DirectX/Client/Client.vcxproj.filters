@@ -22,6 +22,15 @@
     <Filter Include="Engine\DX11">
       <UniqueIdentifier>{5250d48c-eb6c-4878-9d1b-73b2672a2baa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Contents">
+      <UniqueIdentifier>{b0ba41d0-4572-491d-a07c-275b76188f84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Contents\Shader">
+      <UniqueIdentifier>{0022cd34-ce17-4f81-a060-077446199ebd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GameObject">
+      <UniqueIdentifier>{e30f9841-bbbe-4092-8d3d-f1bbbcc5125c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -45,6 +54,12 @@
     <ClInclude Include="EHDX11.h">
       <Filter>Engine\DX11</Filter>
     </ClInclude>
+    <ClInclude Include="EHGameObject.h">
+      <Filter>Engine\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="EHObject.h">
+      <Filter>Engine\GameObject</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -62,10 +77,21 @@
     <ClCompile Include="EHDX11.cpp">
       <Filter>Engine\DX11</Filter>
     </ClCompile>
+    <ClCompile Include="EHGameObject.cpp">
+      <Filter>Engine\GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
       <Filter>Windows\Resources</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders.hlsl">
+      <Filter>Engine\Contents\Shader</Filter>
+    </None>
+    <None Include="shaders2.hlsl">
+      <Filter>Engine\Contents\Shader</Filter>
+    </None>
   </ItemGroup>
 </Project>

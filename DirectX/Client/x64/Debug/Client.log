@@ -1,4 +1,2 @@
-﻿  Client.cpp
-D:\C++\API\DirectX11\DirectX\DirectX\Client\Client.cpp(3,1): warning C4005: 'UNICODE': 매크로 재정의
-D:\C++\API\DirectX11\DirectX\DirectX\Client\Client.cpp(3,1): message : 이전에 명령줄에서 선언된 'UNICODE'
+﻿  EHApplication.cpp
   Client.vcxproj -> D:\C++\API\DirectX11\DirectX\DirectX\x64\Debug\Client.exe

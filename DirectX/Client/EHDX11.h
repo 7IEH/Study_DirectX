@@ -17,6 +17,8 @@ namespace EH
 		static ID3D11RenderTargetView* GetD3DView() { return mD3d11FrameBufferView; }
 		static IDXGISwapChain1* GetSwapChain() { return mD3d11SwapChain; }
 
+		static void SetD3DView(ID3D11RenderTargetView* view) { mD3d11FrameBufferView = view; }
+
 	private:
 		// -------- D3D11 Global Variable--------
 
@@ -32,6 +34,10 @@ namespace EH
 		// Create SwapChian
 		// Double buffering interface
 		static IDXGISwapChain1* mD3d11SwapChain;
+
+		// Vertex Shader
+		static ID3DBlob* vsBlob;
+
 	};
 }
 
