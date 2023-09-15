@@ -20,7 +20,7 @@ VS_Output vs_main(VS_Input input)
     return output;
 }
 
-float ps_main(VS_Output input) : SV_TARGET
+float4 ps_main(VS_Output input) : SV_TARGET
 {
     return input.color;
 }

@@ -114,6 +114,34 @@ namespace EH
 		vertextBufferDesc.Usage = D3D11_USAGE_IMMUTABLE;
 		vertextBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 
+		if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+		{
+			mVertextData[0] -= 0.01f;
+			mVertextData[6] -= 0.01f;
+			mVertextData[12] -= 0.01f;
+		}
+
+		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+		{
+			mVertextData[0] += 0.01f;
+			mVertextData[6] += 0.01f;
+			mVertextData[12] += 0.01f;
+		}
+
+		if (GetAsyncKeyState(VK_UP) & 0x8000)
+		{
+			mVertextData[1] += 0.01f;
+			mVertextData[7] += 0.01f;
+			mVertextData[13] += 0.01f;
+		}
+
+		if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+		{
+			mVertextData[1] -= 0.01f;
+			mVertextData[7] -= 0.01f;
+			mVertextData[13] -= 0.01f;
+		}
+
 
 		D3D11_SUBRESOURCE_DATA vertexSubresourceData = { mVertextData };
 

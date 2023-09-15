@@ -24,7 +24,7 @@ namespace EH
 		GameObject* object = Object::Instantiate<GameObject>(L"shaders.hlsl");
 		float tempdata[18] =
 		{
-			 0.0f + 0.2f,  0.5f, 0.f, 1.f, 0.f, 1.f,
+			 0.0f + 0.2f,  0.5f, 0.f, 0.f, 1.f, 1.f,
 			 0.5f + 0.2f,  -0.5f, 1.f, 1.f, 0.f, 1.f,
 			-0.5f + 0.2f, -0.5f, 0.f, 0.f, 1.f, 1.f
 		};
