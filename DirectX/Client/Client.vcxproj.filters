@@ -10,6 +10,18 @@
     <Filter Include="Windows\Resources">
       <UniqueIdentifier>{5ccb00ae-68fe-432d-8b48-72f14b34a52f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{00e2635c-e11d-4dab-a23b-f4b535e1a0df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Common">
+      <UniqueIdentifier>{ea8b2c6b-4130-45ad-8c1f-1f4d9cbf86e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\High Level Interface">
+      <UniqueIdentifier>{97272880-267a-4340-8ab3-7abd7b644166}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\DX11">
+      <UniqueIdentifier>{5250d48c-eb6c-4878-9d1b-73b2672a2baa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -24,6 +36,15 @@
     <ClInclude Include="targetver.h">
       <Filter>Windows\Header</Filter>
     </ClInclude>
+    <ClInclude Include="Commoninclude.h">
+      <Filter>Engine\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="EHApplication.h">
+      <Filter>Engine\High Level Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="EHDX11.h">
+      <Filter>Engine\DX11</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -35,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="EHApplication.cpp">
+      <Filter>Engine\High Level Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="EHDX11.cpp">
+      <Filter>Engine\DX11</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
