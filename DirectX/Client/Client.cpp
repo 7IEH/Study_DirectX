@@ -4,7 +4,6 @@
 
 #include "Commoninclude.h"
 #include "EHApplication.h"
-#include "EHDX11.h"
 
 EH::Application application;
 
@@ -135,6 +134,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		case WM_DESTROY:
 		{
 			PostQuitMessage(0);
+			break;
+		}
+		case WM_SIZE:
+		{
+			application.Resize(true);
 			break;
 		}
 		default:

@@ -131,7 +131,7 @@
     <ClInclude Include="Client.h" />
     <ClInclude Include="Commoninclude.h" />
     <ClInclude Include="EHApplication.h" />
-    <ClInclude Include="EHDX11.h" />
+    <ClInclude Include="EHD3D.h" />
     <ClInclude Include="EHGameObject.h" />
     <ClInclude Include="EHObject.h" />
     <ClInclude Include="framework.h" />
@@ -141,7 +141,7 @@
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="EHApplication.cpp" />
-    <ClCompile Include="EHDX11.cpp" />
+    <ClCompile Include="EHD3D.cpp" />
     <ClCompile Include="EHGameObject.cpp" />
   </ItemGroup>
   <ItemGroup>

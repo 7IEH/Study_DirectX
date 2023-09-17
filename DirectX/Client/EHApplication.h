@@ -15,10 +15,12 @@ namespace EH
 		void Update();
 		void Render();
 
+		void Resize(bool resize) { mGlobal_windowDidResize = resize; }
+
 	private:
 		HWND mHwnd;
 
-		static bool global_windowDidResize;
+		bool mGlobal_windowDidResize;
 
 		std::vector<class GameObject*> mGameObjects;
 	};

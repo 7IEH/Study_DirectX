@@ -37,6 +37,7 @@ namespace EH
 		UINT mOffset;
 
 		float mVertextData[18];
+		UINT mTest;
 	};
 }
 

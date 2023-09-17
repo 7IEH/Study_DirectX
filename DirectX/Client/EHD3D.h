@@ -4,7 +4,7 @@
 
 namespace EH
 {
-	class DX11
+	class D3D
 	{
 	public:
 		// Function
