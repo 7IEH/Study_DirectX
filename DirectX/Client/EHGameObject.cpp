@@ -1,5 +1,10 @@
 #include "EHGameObject.h"
 #include "EHD3D.h"
+#include "EHObject.h"
+#include "EHApplication.h"
+#include "EHBullet.h"
+
+extern EH::Application application;
 
 namespace EH
 {
@@ -195,41 +200,13 @@ namespace EH
 		// 3. BindFlags : buffer 유형을 선택합니다.
 
 		D3D11_BUFFER_DESC vertexBufferDesc = {};
-		vertexBufferDesc.ByteWidth = sizeof(mVertextData);
+		vertexBufferDesc.ByteWidth = sizeof(vertexData);
 		vertexBufferDesc.Usage = D3D11_USAGE_IMMUTABLE;
 		vertexBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-
-		if (GetAsyncKeyState(VK_LEFT) & 0x8000)
-		{
-			mVertextData[0] -= 0.01f;
-			mVertextData[6] -= 0.01f;
-			mVertextData[12] -= 0.01f;
-		}
-
-		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
-		{
-			mVertextData[0] += 0.01f;
-			mVertextData[6] += 0.01f;
-			mVertextData[12] += 0.01f;
-		}
-
-		if (GetAsyncKeyState(VK_UP) & 0x8000)
-		{
-			mVertextData[1] += 0.01f;
-			mVertextData[7] += 0.01f;
-			mVertextData[13] += 0.01f;
-		}
-
-		if (GetAsyncKeyState(VK_DOWN) & 0x8000)
-		{
-			mVertextData[1] -= 0.01f;
-			mVertextData[7] -= 0.01f;
-			mVertextData[13] -= 0.01f;
-		}
-
+		
 		// buffer에 초기화 될 값을 저장하는 객체입니다.
 
-		D3D11_SUBRESOURCE_DATA vertexSubresourceData = { mVertextData };
+		D3D11_SUBRESOURCE_DATA vertexSubresourceData = { vertexData };
 
 		// 1. pDesc : 생성할 buffer의 형식을 지정합니다.
 		// 2. pInitialData : buffer의 초기화 값
@@ -255,7 +232,6 @@ namespace EH
 
 
 		D3D::GetD3DDeviceContext()->IASetVertexBuffers(0, 1, &mVertexBuffer, &mStride, &mOffset);
-
 
 		// 1. VertexCount : 그릴 정점의 수
 		// 2. StartVertexLocation : 정점 버퍼의 첫번째 인덱스

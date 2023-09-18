@@ -2,6 +2,7 @@
 #include "EHGameObject.h"
 #include "EHD3D.h"
 #include "EHObject.h"
+#include "EHPlayer.h"
 
 namespace EH
 {
@@ -23,17 +24,17 @@ namespace EH
 		// DirectX Initialize
 		D3D::Initialize(hWnd);
 
-		GameObject* object = Object::Instantiate<GameObject>(L"shaders.hlsl");
+		Player* object = Object::Instantiate<Player>(L"shaders.hlsl");
 		float tempdata[18] =
 		{
-			 0.0f + 0.5f,  0.5f, 0.f, 0.f, 1.f, 1.f,
-			 0.5f + 0.5f,  -0.5f, 1.f, 1.f, 0.f, 1.f,
-			-0.5f + 0.5f, -0.5f, 0.f, 0.f, 1.f, 1.f
+			 0.0f ,  0.5f, 0.f, 0.f, 1.f, 1.f,
+			 0.5f ,  -0.5f, 1.f, 1.f, 0.f, 1.f,
+			-0.5f , -0.5f, 0.f, 0.f, 1.f, 1.f
 		};
 		object->SetVertexData(tempdata);
 		mGameObjects.push_back(object);
 
-		object = Object::Instantiate<GameObject>(L"shaders.hlsl");
+		/*object = Object::Instantiate<GameObject>(L"shaders.hlsl");
 		float tempdata2[18] =
 		{
 			 0.0f - 0.5f,  0.5f, 0.f, 1.f, 0.f, 1.f,
@@ -41,7 +42,7 @@ namespace EH
 			-0.5f - 0.5f, -0.5f, 0.f, 0.f, 1.f, 1.f
 		};
 		object->SetVertexData(tempdata2);
-		mGameObjects.push_back(object);	
+		mGameObjects.push_back(object);	*/
 	}
 
 	void Application::Run()
@@ -52,9 +53,10 @@ namespace EH
 
 	void Application::Update()
 	{
-		std::vector<GameObject*>::iterator iter = mGameObjects.begin();
+		std::vector<class GameObject*> objects = mGameObjects;
+		std::vector<GameObject*>::iterator iter = objects.begin();
 
-		for (;iter != mGameObjects.end();iter++)
+		for (;iter != objects.end();iter++)
 		{
 			(*iter)->Update();
 		}

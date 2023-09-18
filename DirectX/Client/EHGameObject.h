@@ -7,22 +7,23 @@ namespace EH
 	class GameObject
 	{
 	public:
+		GameObject();
 		GameObject(std::wstring shader);
 		~GameObject();
 
-		void Initialize();
-		void Update();
-		void Render();
+		virtual void Initialize();
+		virtual void Update();
+		virtual void Render();
 
 		void SetVertexData(float vertexdata[18])
 		{
 			for (int i = 0;i < 18;i++)
 			{
-				mVertextData[i] = vertexdata[i];
+				vertexData[i] = vertexdata[i];
 			}
 		}
 
-
+		float* GetVertexData() { return vertexData; }
 
 	private:
 		std::wstring mShader;
@@ -36,7 +37,7 @@ namespace EH
 		UINT mStride;
 		UINT mOffset;
 
-		float mVertextData[18];
+		float vertexData[18];
 		UINT mTest;
 	};
 }

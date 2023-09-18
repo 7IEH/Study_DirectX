@@ -25,11 +25,20 @@
     <Filter Include="Contents">
       <UniqueIdentifier>{b0ba41d0-4572-491d-a07c-275b76188f84}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\Shader">
-      <UniqueIdentifier>{0022cd34-ce17-4f81-a060-077446199ebd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\D3D">
       <UniqueIdentifier>{5250d48c-eb6c-4878-9d1b-73b2672a2baa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\TestContents">
+      <UniqueIdentifier>{4fafff5d-a551-40d7-89a7-09c533251997}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Player">
+      <UniqueIdentifier>{7892a787-7aba-4852-ad4a-9ef3fc4d3757}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component">
+      <UniqueIdentifier>{8d53bc34-2dec-490d-a9f7-d66a85ce456a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\Transform">
+      <UniqueIdentifier>{57c326c5-3b5e-4cb6-a238-0a8d61d7b1d4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +69,15 @@
     <ClInclude Include="EHObject.h">
       <Filter>Engine\GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="EHBullet.h">
+      <Filter>Contents\TestContents</Filter>
+    </ClInclude>
+    <ClInclude Include="EHPlayer.h">
+      <Filter>Contents\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="EHTrasnform.h">
+      <Filter>Engine\Component\Transform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -80,18 +98,19 @@
     <ClCompile Include="EHGameObject.cpp">
       <Filter>Engine\GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="EHBullet.cpp">
+      <Filter>Contents\TestContents</Filter>
+    </ClCompile>
+    <ClCompile Include="EHPlayer.cpp">
+      <Filter>Contents\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="EHTrasnform.cpp">
+      <Filter>Engine\Component\Transform</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc">
       <Filter>Windows\Resources</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="shaders.hlsl">
-      <Filter>Contents\Shader</Filter>
-    </None>
-    <None Include="shaders2.hlsl">
-      <Filter>Contents\Shader</Filter>
-    </None>
   </ItemGroup>
 </Project>

@@ -17,6 +17,8 @@ namespace EH
 
 		void Resize(bool resize) { mGlobal_windowDidResize = resize; }
 
+		void AddObject(class GameObject* object) { mGameObjects.push_back(object); }
+
 	private:
 		HWND mHwnd;
 
