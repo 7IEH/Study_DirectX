@@ -1,10 +1,14 @@
 #include "EHBullet.h"
+#include "EHTrasnform.h"
 
 namespace EH
 {
 	Bullet::Bullet(std::wstring shader)
-		: GameObject(shader)
+		: 
+		 GameObject(shader)
+		,mRadian(90*(3.14f/180.f))
 	{
+		AddComponent<Transform>();
 	}
 
 	Bullet::~Bullet()
@@ -18,12 +22,11 @@ namespace EH
 	void Bullet::Update()
 	{
 		GameObject::Update();
-		float* vertexdata = GetVertexData();
-		vertexdata[1] += 0.03f;
-		vertexdata[7] += 0.03f;
-		vertexdata[13] += 0.03f;
-
-		SetVertexData(vertexdata);
+		Transform* tr = GetComponent<Transform>();
+		Math::Vector3 pos = tr->GetPosition();
+		pos.x += cosf(mRadian) * 0.01f;
+		pos.y += sinf(mRadian) * 0.01f;
+		tr->SetPosition(pos);
 	}
 
 	void Bullet::Render()

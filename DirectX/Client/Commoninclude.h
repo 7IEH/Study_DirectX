@@ -15,3 +15,15 @@
 
 // Data Structure
 #include <vector>
+
+#include "EHMath.h"
+
+// eunm class
+namespace EH::enums
+{
+	enum class eCommponentType
+	{
+		Transform
+		, End
+	};
+}

@@ -19,6 +19,8 @@ namespace EH
 
 		void AddObject(class GameObject* object) { mGameObjects.push_back(object); }
 
+		HWND GetHWND() { return mHwnd; }
+
 	private:
 		HWND mHwnd;
 

@@ -206,6 +206,11 @@ namespace EH
 		
 		// buffer에 초기화 될 값을 저장하는 객체입니다.
 
+		for (Component* comp : mComponents)
+		{
+			comp->Update();
+		}
+
 		D3D11_SUBRESOURCE_DATA vertexSubresourceData = { vertexData };
 
 		// 1. pDesc : 생성할 buffer의 형식을 지정합니다.

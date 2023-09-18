@@ -3,6 +3,7 @@
 #include "EHD3D.h"
 #include "EHObject.h"
 #include "EHPlayer.h"
+#include "EHTrasnform.h"
 
 namespace EH
 {
@@ -25,11 +26,14 @@ namespace EH
 		D3D::Initialize(hWnd);
 
 		Player* object = Object::Instantiate<Player>(L"shaders.hlsl");
+		object->GetComponent<Transform>()->SetPosition(Math::Vector3(0.f, 0.f, 0.f));
+		object->GetComponent<Transform>()->SetScale(Math::Vector3(0.1f, 0.1f, 0.1f));
+
 		float tempdata[18] =
 		{
-			 0.0f ,  0.5f, 0.f, 0.f, 1.f, 1.f,
-			 0.5f ,  -0.5f, 1.f, 1.f, 0.f, 1.f,
-			-0.5f , -0.5f, 0.f, 0.f, 1.f, 1.f
+			0.f , 0.f, 0.f, 0.f, 1.f, 1.f,
+			0.f , 0.f, 1.f, 1.f, 0.f, 1.f,
+			0.f , 0.f, 0.f, 0.f, 1.f, 1.f
 		};
 		object->SetVertexData(tempdata);
 		mGameObjects.push_back(object);

@@ -14,9 +14,12 @@ namespace EH
 		virtual void Update();
 		virtual void Render();
 
+		void SetSpeed(float speed) { mSpeed = speed; }
+		void SetRadian(float radian) { mRadian = radian; }
+
 	private:
 		float mSpeed;
-		float mDir;
+		float mRadian;
 	};
 }
 

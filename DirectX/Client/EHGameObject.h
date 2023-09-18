@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Commoninclude.h"
+#include "EHComponent.h"
+#include "EHTrasnform.h"
 
 namespace EH
 {
@@ -14,6 +16,28 @@ namespace EH
 		virtual void Initialize();
 		virtual void Update();
 		virtual void Render();
+
+		template <typename T>
+		T* AddComponent()
+		{
+			T* comp = new T();
+			mComponents.push_back(comp);
+			comp->SetOwenr(this);
+			return comp;
+		}
+
+		template <typename T>
+		T* GetComponent()
+		{
+			T* temp = nullptr;
+			for (Component* comp : mComponents)
+			{
+				temp = dynamic_cast<T*>(comp);
+				if (temp != nullptr)
+					return temp;
+			}
+			return temp;
+		}
 
 		void SetVertexData(float vertexdata[18])
 		{
@@ -39,6 +63,9 @@ namespace EH
 
 		float vertexData[18];
 		UINT mTest;
+
+		std::vector<Component*> mComponents;
+
 	};
 }
 

@@ -40,6 +40,12 @@
     <Filter Include="Engine\Component\Transform">
       <UniqueIdentifier>{57c326c5-3b5e-4cb6-a238-0a8d61d7b1d4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Common\Time">
+      <UniqueIdentifier>{7e0eda02-85e7-444d-88a2-f7ab0e866d8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Input">
+      <UniqueIdentifier>{def910f2-81d9-44c5-84f5-b3ec8de0b989}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -78,6 +84,18 @@
     <ClInclude Include="EHTrasnform.h">
       <Filter>Engine\Component\Transform</Filter>
     </ClInclude>
+    <ClInclude Include="EHComponent.h">
+      <Filter>Engine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="EHTime.h">
+      <Filter>Engine\Common\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="EHInput.h">
+      <Filter>Engine\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="EHMath.h">
+      <Filter>Engine\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -106,6 +124,15 @@
     </ClCompile>
     <ClCompile Include="EHTrasnform.cpp">
       <Filter>Engine\Component\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="EHComponent.cpp">
+      <Filter>Engine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="EHTime.cpp">
+      <Filter>Engine\Common\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="EHInput.cpp">
+      <Filter>Engine\Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

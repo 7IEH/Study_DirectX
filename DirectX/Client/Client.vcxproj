@@ -132,10 +132,14 @@
     <ClInclude Include="Commoninclude.h" />
     <ClInclude Include="EHApplication.h" />
     <ClInclude Include="EHBullet.h" />
+    <ClInclude Include="EHComponent.h" />
     <ClInclude Include="EHD3D.h" />
     <ClInclude Include="EHGameObject.h" />
+    <ClInclude Include="EHInput.h" />
+    <ClInclude Include="EHMath.h" />
     <ClInclude Include="EHObject.h" />
     <ClInclude Include="EHPlayer.h" />
+    <ClInclude Include="EHTime.h" />
     <ClInclude Include="EHTrasnform.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />
@@ -145,9 +149,12 @@
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="EHApplication.cpp" />
     <ClCompile Include="EHBullet.cpp" />
+    <ClCompile Include="EHComponent.cpp" />
     <ClCompile Include="EHD3D.cpp" />
     <ClCompile Include="EHGameObject.cpp" />
+    <ClCompile Include="EHInput.cpp" />
     <ClCompile Include="EHPlayer.cpp" />
+    <ClCompile Include="EHTime.cpp" />
     <ClCompile Include="EHTrasnform.cpp" />
   </ItemGroup>
   <ItemGroup>
