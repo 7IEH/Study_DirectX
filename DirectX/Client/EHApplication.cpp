@@ -9,6 +9,7 @@
 #include "EHInput.h"
 #include "EHMeshRenderer.h"
 #include "EHResources.h"
+#include "EHSceneManager.h"
 
 namespace EH
 {
@@ -22,24 +23,25 @@ namespace EH
 		mHwnd = hWnd;
 		Time::Initialize();
 		Input::Initialize();
-
 		// DirectX Initialize
 		mGraphicsDevice = std::make_unique<D3D>();
 		GetDevice() = mGraphicsDevice.get();
 
 		renderer::Initialize();
-
-		GameObject* testobject = Object::Instantiate<GameObject>();
+		SceneManager::Initialize();
+		// √ ±‚»≠
+		/*GameObject* testobject = Object::Instantiate<GameObject>();
 		MeshRenderer* temp = testobject->AddComponent<MeshRenderer>();
 		temp->SetMash(Resources::Find<Mesh>(L"TriangleMesh"));
 		temp->SetShader(Resources::Find<Shader>(L"TriangleShader"));
 
-		mGameObjects.push_back(testobject);
+		mGameObjects.push_back(testobject);*/
 	}
 
 	void Application::Run()
 	{
 		Update();
+		FixedUpdate();
 		Render();
 	}
 
@@ -47,6 +49,8 @@ namespace EH
 	{
 		Time::Update();
 		Input::Update();
+		SceneManager::Update();
+
 		std::vector<class GameObject*> objects = mGameObjects;
 		std::vector<GameObject*>::iterator iter = objects.begin();
 
@@ -54,6 +58,11 @@ namespace EH
 		{
 			(*iter)->Update();
 		}
+	}
+
+	void Application::FixedUpdate()
+	{
+		SceneManager::FixedUpdate();
 	}
 
 	void Application::Render()
@@ -137,6 +146,7 @@ namespace EH
 		GetDevice()->GetGPUContext().Get()->OMSetRenderTargets(1, &temp, nullptr);
 		GetDevice()->SetView(temp);
 	
+		SceneManager::Render();
 
 		std::vector<GameObject*>::iterator iter = mGameObjects.begin();
 		for (;iter != mGameObjects.end();iter++)

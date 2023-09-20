@@ -35,6 +35,16 @@ namespace EH::enums
 		, MeshRenderer
 		, End
 	};
+
+
+	enum class eLayerType
+	{
+		BackGround
+		, UI
+		, Enemy
+		, Player
+		, End
+	};
 }
 
 namespace EH::graphics

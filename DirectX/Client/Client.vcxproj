@@ -138,6 +138,7 @@
     <ClInclude Include="EHEntity.h" />
     <ClInclude Include="EHGameObject.h" />
     <ClInclude Include="EHInput.h" />
+    <ClInclude Include="EHLayer.h" />
     <ClInclude Include="EHMath.h" />
     <ClInclude Include="EHMesh.h" />
     <ClInclude Include="EHObject.h" />
@@ -145,7 +146,10 @@
     <ClInclude Include="EHRenderer.h" />
     <ClInclude Include="EHResource.h" />
     <ClInclude Include="EHResources.h" />
+    <ClInclude Include="EHScene.h" />
+    <ClInclude Include="EHSceneManager.h" />
     <ClInclude Include="EHShader.h" />
+    <ClInclude Include="EHTestScene.h" />
     <ClInclude Include="EHTime.h" />
     <ClInclude Include="EHTrasnform.h" />
     <ClInclude Include="framework.h" />
@@ -162,12 +166,16 @@
     <ClCompile Include="EHEntity.cpp" />
     <ClCompile Include="EHGameObject.cpp" />
     <ClCompile Include="EHInput.cpp" />
+    <ClCompile Include="EHLayer.cpp" />
     <ClCompile Include="EHMesh.cpp" />
     <ClCompile Include="EHPlayer.cpp" />
     <ClCompile Include="EHRenderer.cpp" />
     <ClCompile Include="EHResource.cpp" />
     <ClCompile Include="EHResources.cpp" />
+    <ClCompile Include="EHScene.cpp" />
+    <ClCompile Include="EHSceneManager.cpp" />
     <ClCompile Include="EHShader.cpp" />
+    <ClCompile Include="EHTestScene.cpp" />
     <ClCompile Include="EHTime.cpp" />
     <ClCompile Include="EHTrasnform.cpp" />
     <ClCompile Include="EHMeshRenderer.cpp" />

@@ -70,6 +70,18 @@
     <Filter Include="Engine\Resource\Manager">
       <UniqueIdentifier>{da77a0db-730f-49de-a5d0-00b1b4290d48}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Scene">
+      <UniqueIdentifier>{0ad1ff65-d2a0-4473-8782-60c4a945fe79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Layer">
+      <UniqueIdentifier>{5ec75676-13d4-40ff-a274-a93e6cac98fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\SceneMgr">
+      <UniqueIdentifier>{82797f1e-93a1-407b-aeb9-0b3a2ed2effc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene">
+      <UniqueIdentifier>{28a34dd2-11ca-43a9-b934-490844d3293d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -141,6 +153,18 @@
     <ClInclude Include="EHResources.h">
       <Filter>Engine\Resource\Manager</Filter>
     </ClInclude>
+    <ClInclude Include="EHSceneManager.h">
+      <Filter>Engine\SceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="EHScene.h">
+      <Filter>Engine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="EHLayer.h">
+      <Filter>Engine\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="EHTestScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -199,6 +223,18 @@
     </ClCompile>
     <ClCompile Include="EHResources.cpp">
       <Filter>Engine\Resource\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="EHSceneManager.cpp">
+      <Filter>Engine\SceneMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="EHScene.cpp">
+      <Filter>Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="EHLayer.cpp">
+      <Filter>Engine\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="EHTestScene.cpp">
+      <Filter>Contents\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,7 @@ namespace EH
 		void Initialize(HWND);
 		void Run();
 		void Update();
+		void FixedUpdate();
 		void Render();
 
 		void Resize(bool resize) { mGlobal_windowDidResize = resize; }
