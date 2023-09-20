@@ -9,9 +9,10 @@ namespace EH
 		Player();
 		virtual ~Player();
 
-		virtual void Initialize();
-		virtual void Update();
-		virtual void Render();
+		virtual void Initialize() override;
+		virtual void Update() override;
+		virtual void FixedUpdate() override;
+		virtual void Render() override;
 
 	private:
 

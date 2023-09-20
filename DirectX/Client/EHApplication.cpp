@@ -29,13 +29,6 @@ namespace EH
 
 		renderer::Initialize();
 		SceneManager::Initialize();
-		// 초기화
-		/*GameObject* testobject = Object::Instantiate<GameObject>();
-		MeshRenderer* temp = testobject->AddComponent<MeshRenderer>();
-		temp->SetMash(Resources::Find<Mesh>(L"TriangleMesh"));
-		temp->SetShader(Resources::Find<Shader>(L"TriangleShader"));
-
-		mGameObjects.push_back(testobject);*/
 	}
 
 	void Application::Run()
@@ -50,14 +43,6 @@ namespace EH
 		Time::Update();
 		Input::Update();
 		SceneManager::Update();
-
-		std::vector<class GameObject*> objects = mGameObjects;
-		std::vector<GameObject*>::iterator iter = objects.begin();
-
-		for (;iter != objects.end();iter++)
-		{
-			(*iter)->Update();
-		}
 	}
 
 	void Application::FixedUpdate()
@@ -148,11 +133,6 @@ namespace EH
 	
 		SceneManager::Render();
 
-		std::vector<GameObject*>::iterator iter = mGameObjects.begin();
-		for (;iter != mGameObjects.end();iter++)
-		{
-			(*iter)->Render();
-		}
 
 		// 백버퍼에 렌더링된이미지를 보여줍니다.
 

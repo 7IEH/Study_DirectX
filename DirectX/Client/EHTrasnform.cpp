@@ -22,30 +22,7 @@ namespace EH
 
     void Transform::Update()
     {
-        GameObject* owner = GetOwner();
-        float* temp = owner->GetVertexData();
        
-
-        if (mDegree <= 0.f)
-        {
-            temp[0] = mPosition.x;
-            temp[1] = mPosition.y + mScale.y;
-            temp[6] = mPosition.x + mScale.x;
-            temp[7] = mPosition.y - mScale.y;
-            temp[12] = mPosition.x - mScale.x;
-            temp[13] = mPosition.y - mScale.y;
-        }
-        else
-        {
-           /* temp[0] = mPosition.x - mScale.x * cosf((mDegree + 90) * (3.14f / 180.f));
-            temp[1] = mPosition.y + mScale.x * sinf((mDegree + 90) * (3.14f / 180.f));
-            temp[6] = mPosition.x + mScale.x * cosf((mDegree) * (3.14f / 180.f));
-            temp[7] = mPosition.y + mScale.x * sinf((mDegree) * (3.14f / 180.f));
-            temp[12] = mPosition.x - mScale.x * cosf((mDegree) * (3.14f / 180.f));
-            temp[13] = mPosition.y - mScale.x * sinf((mDegree) * (3.14f / 180.f));*/
-        }
-
-        //owner->SetVertexData(temp);
     }
 
     void Transform::Render()

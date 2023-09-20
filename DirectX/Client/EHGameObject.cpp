@@ -9,14 +9,6 @@ extern EH::Application application;
 namespace EH
 {
 	GameObject::GameObject()
-		:
-		  mVertexShader(nullptr)
-		, mPixelShader(nullptr)
-		, mInputLayout(nullptr)
-		, mStride(6 * sizeof(float))
-		, mNumVerts(3)
-		, mOffset(0)
-		, mTest(0)
 	{
 	}
 
