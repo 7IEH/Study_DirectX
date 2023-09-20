@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClInclude Include="Client.h" />
     <ClInclude Include="Commoninclude.h" />
+    <ClInclude Include="EHConstantBuffer.h" />
     <ClInclude Include="EHApplication.h" />
     <ClInclude Include="EHBullet.h" />
     <ClInclude Include="EHComponent.h" />
@@ -148,6 +149,7 @@
     <ClInclude Include="EHResources.h" />
     <ClInclude Include="EHScene.h" />
     <ClInclude Include="EHSceneManager.h" />
+    <ClInclude Include="EHScript.h" />
     <ClInclude Include="EHShader.h" />
     <ClInclude Include="EHTestScene.h" />
     <ClInclude Include="EHTime.h" />
@@ -159,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Client.cpp" />
+    <ClCompile Include="EHConstantBuffer.cpp" />
     <ClCompile Include="EHApplication.cpp" />
     <ClCompile Include="EHBullet.cpp" />
     <ClCompile Include="EHComponent.cpp" />
@@ -174,6 +177,7 @@
     <ClCompile Include="EHResources.cpp" />
     <ClCompile Include="EHScene.cpp" />
     <ClCompile Include="EHSceneManager.cpp" />
+    <ClCompile Include="EHScript.cpp" />
     <ClCompile Include="EHShader.cpp" />
     <ClCompile Include="EHTestScene.cpp" />
     <ClCompile Include="EHTime.cpp" />

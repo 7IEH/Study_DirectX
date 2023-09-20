@@ -33,6 +33,7 @@ namespace EH::enums
 	{
 		Transform
 		, MeshRenderer
+		, Script
 		, End
 	};
 
@@ -44,6 +45,13 @@ namespace EH::enums
 		, Enemy
 		, Player
 		, End
+	};
+
+	enum class CBYTES
+	{
+		  Transform
+		, None
+		, END
 	};
 }
 

@@ -3,6 +3,7 @@
 #include "Commoninclude.h"
 #include "EHComponent.h"
 #include "EHTrasnform.h"
+#include "EHScript.h"
 
 namespace EH
 {
@@ -39,8 +40,15 @@ namespace EH
 			return temp;
 		}
 
+		void SetScript(Script* script) 
+		{ 
+			mScript = script; 
+			mScript->SetOwenr(this);
+		}
+
 	private:
 		std::vector<Component*> mComponents;
+		Script* mScript;
 	};
 }
 

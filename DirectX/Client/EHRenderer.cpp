@@ -9,12 +9,13 @@ namespace EH::renderer
 	D3D11_INPUT_ELEMENT_DESC InputLayouts[2];
 	Mesh* mesh = nullptr;
 	Shader* shader = nullptr;
+	ConstantBuffer* constantBuffers[(UINT)enums::CBYTES::END];
 
 	void LoadBuffer()
 	{
 		std::vector<Vertex> vertexes;
 		vertexes.resize(3);
-		vertexes[0].pos = Math::Vector3(0.f, 0.5f, 0.f);
+		vertexes[0].pos = Math::Vector3(0.f, 0.5f, 0.F);
 		vertexes[0].Color = Math::Vector4(1.f, 0.f, 0.f, 0.f);
 
 		vertexes[1].pos = Math::Vector3(0.5f, -0.5f, 0.f);
@@ -35,6 +36,9 @@ namespace EH::renderer
 		mesh->CreateVertexBuffer(vertexes.data(), 3);
 		Resources::Insert(L"TriangleMesh", mesh);
 
+		constantBuffers[(UINT)enums::CBYTES::Transform] = new ConstantBuffer();
+		constantBuffers[(UINT)enums::CBYTES::Transform]->Create(sizeof(Math::Vector4));
+		constantBuffers[(UINT)enums::CBYTES::Transform]->SetType(enums::CBYTES::Transform);
 	}
 
 	void LoadShader()
@@ -45,7 +49,7 @@ namespace EH::renderer
 
 		D3D11_INPUT_ELEMENT_DESC inputElementDesc[] =
 		{
-			{"POS",0,DXGI_FORMAT_R32G32_FLOAT,0,0,D3D11_INPUT_PER_VERTEX_DATA,0},
+			{"POS",0,DXGI_FORMAT_R32G32B32_FLOAT,0,0,D3D11_INPUT_PER_VERTEX_DATA,0},
 			{"COL",0,DXGI_FORMAT_R32G32B32A32_FLOAT,0,D3D11_APPEND_ALIGNED_ELEMENT,D3D11_INPUT_PER_VERTEX_DATA,0}
 		};
 

@@ -179,7 +179,7 @@ namespace EH
 			// 5. pRestrictToOutput : 스왑 체인 출력 제한에 대한 옵션이다.
 			// 6. ppSwapChain : 생성된 swapchain을 반환한다.
 
-			 hResult = dxgiFactory->CreateSwapChain(
+			hResult = dxgiFactory->CreateSwapChain(
 				mDevice.Get()
 				, &d3d11SwapChainDesc
 				, mSwapChain.GetAddressOf());
@@ -193,5 +193,42 @@ namespace EH
 		}
 
 		return true;
+	}
+
+	void D3D::SetConstantBuffer(graphics::ShaderStage stage, enums::CBYTES type, ID3D11Buffer* buffer)
+	{
+		switch (stage)
+		{
+		case graphics::ShaderStage::VS:
+			{
+			mContext->VSSetConstantBuffers((UINT)type, 1, &buffer);
+			}
+			break;
+		case graphics::ShaderStage::HS:
+			{
+			mContext->HSSetConstantBuffers((UINT)type, 1, &buffer);
+			}
+			break;
+		case graphics::ShaderStage::DS:
+			{
+			mContext->DSSetConstantBuffers((UINT)type, 1, &buffer);
+			}
+			break;
+		case graphics::ShaderStage::GS:
+			{
+			mContext->GSSetConstantBuffers((UINT)type, 1, &buffer);
+			}
+			break;
+		case graphics::ShaderStage::PS:
+			{
+			mContext->PSSetConstantBuffers((UINT)type, 1, &buffer);
+			}
+			break;
+		case graphics::ShaderStage::CS:
+			{
+			mContext->CSSetConstantBuffers((UINT)type, 1, &buffer);
+			}
+			break;
+		}
 	}
 }

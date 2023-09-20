@@ -3,6 +3,7 @@
 #include "Commoninclude.h"
 #include "EHMesh.h"
 #include "EHShader.h"
+#include "EHConstantBuffer.h"
 
 namespace EH::renderer
 {
@@ -17,5 +18,6 @@ namespace EH::renderer
 
 	extern Mesh* mesh;
 	extern Shader* shader;
+	extern ConstantBuffer* constantBuffers[];
 }
 

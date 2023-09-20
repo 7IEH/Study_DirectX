@@ -1,9 +1,9 @@
 #pragma once
-#include "EHGameObject.h"
+#include "EHScript.h"
 
 namespace EH
 {
-	class Player : public GameObject
+	class Player : public Script
 	{
 	public:
 		Player();

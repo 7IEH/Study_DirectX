@@ -3,6 +3,7 @@
 #include "EHGameObject.h"
 #include "EHMeshRenderer.h"
 #include "EHResources.h"
+#include "EHPlayer.h"
 
 namespace EH 
 {
@@ -17,9 +18,16 @@ namespace EH
 	void TestScene::Initialize()
 	{
 		GameObject* testobject = Object::Instantiate<GameObject>(enums::eLayerType::Player);
+		
 		MeshRenderer* temp = testobject->AddComponent<MeshRenderer>();
 		temp->SetMash(Resources::Find<Mesh>(L"TriangleMesh"));
 		temp->SetShader(Resources::Find<Shader>(L"TriangleShader"));
+
+		Transform* tr = testobject->AddComponent<Transform>();
+		tr->SetPosition(Math::Vector3(0.f, 0.5f, 0.f));
+
+		Player* script = new Player();
+		testobject->SetScript(script);
 	}
 
 	void TestScene::Update()

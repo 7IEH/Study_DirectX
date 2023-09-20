@@ -18,6 +18,9 @@ namespace EH
 		Microsoft::WRL::ComPtr<ID3D11RenderTargetView> GetView() { return mRenderTargetView; }
 
 		void SetView(Microsoft::WRL::ComPtr<ID3D11RenderTargetView> view) { mRenderTargetView = view; }
+		
+		void SetConstantBuffer(graphics::ShaderStage stage, enums::CBYTES type, ID3D11Buffer* buffer);
+
 
 	private:
 		// -------- D3D11 Global Variable--------

@@ -29,6 +29,8 @@ namespace EH
 
 			comp->FixedUpdate();
 		}
+
+		mScript->FixedUpdate();
 	}
 
 	void GameObject::Update()
@@ -41,6 +43,7 @@ namespace EH
 			comp->Update();
 		}
 
+		mScript->Update();
 		/*GetDevice()->GetGPUContext().Get()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 		GetDevice()->GetGPUContext().Get()->IASetInputLayout(mInputLayout);
 		GetDevice()->GetGPUContext().Get()->VSSetShader(mVertexShader, nullptr, 0);
@@ -64,6 +67,8 @@ namespace EH
 			comp->Render();
 		}
 
+
+		mScript->Render();
 		//GetDevice()->GetGPUContext().Get()->IASetVertexBuffers(0, 1, &mVertexBuffer, &mStride, &mOffset);
 
 		//// 1. VertexCount : 그릴 정점의 수

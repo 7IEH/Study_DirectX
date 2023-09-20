@@ -1,4 +1,5 @@
 #include "EHMeshRenderer.h"
+#include "EHGameObject.h"
 
 namespace EH
 {
@@ -25,6 +26,7 @@ namespace EH
 	}
 	void MeshRenderer::Render()
 	{
+		GetOwner()->GetComponent<Transform>()->SetConstantBuffer();
 		mShader->Update();
 		mMesh->Render();
 	}

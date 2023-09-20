@@ -1,5 +1,7 @@
 #include "EHTrasnform.h"
 #include "EHGameObject.h"
+#include "EHConstantBuffer.h"
+#include "EHRenderer.h"
 
 namespace EH
 {
@@ -8,6 +10,7 @@ namespace EH
           Component(enums::eCommponentType::Transform)
         , mPosition(Math::Vector3(0.f,0.f,0.f))
         , mScale(Math::Vector3(0.f,0.f,0.f))
+        , mRotation(Math::Vector3(0.f,0.f,0.f))
         , mDegree(-1.f)
     {
     }
@@ -25,7 +28,19 @@ namespace EH
        
     }
 
+    void Transform::FixedUpdate()
+    {
+    }
+
     void Transform::Render()
     {
+    }
+
+    void Transform::SetConstantBuffer()
+    {
+        ConstantBuffer* cb = renderer::constantBuffers[(UINT)enums::CBYTES::Transform];
+
+        cb->Bind(&mPosition);
+        cb->SetPipline(graphics::ShaderStage::VS);
     }
 }
