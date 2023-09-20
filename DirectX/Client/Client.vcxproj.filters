@@ -64,6 +64,12 @@
     <Filter Include="Engine\Resource\Mesh">
       <UniqueIdentifier>{9d2f17b5-d440-49ec-94b6-8106ff748a9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Component\Scripts">
+      <UniqueIdentifier>{7d5622b6-8292-4299-9e77-e433fbea31bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Resource\Manager">
+      <UniqueIdentifier>{da77a0db-730f-49de-a5d0-00b1b4290d48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -132,6 +138,9 @@
     <ClInclude Include="EHShader.h">
       <Filter>Engine\Resource\Shader</Filter>
     </ClInclude>
+    <ClInclude Include="EHResources.h">
+      <Filter>Engine\Resource\Manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -187,6 +196,9 @@
     </ClCompile>
     <ClCompile Include="EHShader.cpp">
       <Filter>Engine\Resource\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="EHResources.cpp">
+      <Filter>Engine\Resource\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

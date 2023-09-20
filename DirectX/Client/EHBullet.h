@@ -7,7 +7,7 @@ namespace EH
 	class Bullet : public GameObject
 	{
 	public:
-		Bullet(std::wstring shader);
+		Bullet();
 		virtual ~Bullet();
 
 		virtual void Initialize();

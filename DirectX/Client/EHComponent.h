@@ -10,6 +10,7 @@ namespace EH
 		virtual ~Component();
 
 		virtual void Initialize();
+		virtual void FixedUpdate();
 		virtual void Update();
 		virtual void Render();
 

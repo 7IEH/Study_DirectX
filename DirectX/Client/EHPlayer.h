@@ -6,7 +6,7 @@ namespace EH
 	class Player : public GameObject
 	{
 	public:
-		Player(std::wstring shader);
+		Player();
 		virtual ~Player();
 
 		virtual void Initialize();

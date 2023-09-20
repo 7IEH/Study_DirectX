@@ -14,7 +14,7 @@ struct VS_Output
 VS_Output vs_main(VS_Input input)
 {
     VS_Output output;
-    output.position = float4(input.pos, 0.f, 1.f);
+    output.position = float4(input.pos, 0.f, 2.f);
     output.color = input.color;
     
     return output;

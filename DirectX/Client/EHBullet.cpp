@@ -3,10 +3,9 @@
 
 namespace EH
 {
-	Bullet::Bullet(std::wstring shader)
+	Bullet::Bullet()
 		: 
-		 GameObject(shader)
-		,mRadian(90*(3.14f/180.f))
+		mRadian(90*(3.14f/180.f))
 	{
 		AddComponent<Transform>();
 	}

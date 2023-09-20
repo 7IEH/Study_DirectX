@@ -7,8 +7,7 @@ extern EH::Application application;
 
 namespace EH
 {
-	Player::Player(std::wstring shader)
-		:GameObject(shader)
+	Player::Player()
 	{
 		AddComponent<Transform>();
 	}
@@ -55,7 +54,7 @@ namespace EH
 
 		if (GetAsyncKeyState(VK_SPACE) & 0x8000)
 		{
-			Bullet* object = new Bullet(L"shaders.hlsl");
+			Bullet* object = new Bullet();
 			pos.y += 0.1f;
 			object->GetComponent<Transform>()->SetPosition(pos);
 			object->GetComponent<Transform>()->SetScale(Math::Vector3(0.1f,0.1f,0.1f));
@@ -98,7 +97,7 @@ namespace EH
 
 			float radian = atan2(y - pos.y, x - pos.x);
 
-			Bullet* object = new Bullet(L"shaders.hlsl");
+			Bullet* object = new Bullet();
 			pos.y += 0.1f;
 			object->GetComponent<Transform>()->SetPosition(pos);
 			object->GetComponent<Transform>()->SetScale(Math::Vector3(0.1f, 0.1f, 0.1f));

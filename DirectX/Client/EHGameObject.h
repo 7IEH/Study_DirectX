@@ -10,10 +10,10 @@ namespace EH
 	{
 	public:
 		GameObject();
-		GameObject(std::wstring shader);
 		~GameObject();
 
 		virtual void Initialize();
+		virtual void FixedUpdate();
 		virtual void Update();
 		virtual void Render();
 

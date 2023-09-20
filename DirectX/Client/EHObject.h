@@ -4,9 +4,9 @@
 namespace EH::Object
 {
 	template <typename T>
-	T* Instantiate(std::wstring shader)
+	T* Instantiate()
 	{
-		T* obj = new T(shader);
+		T* obj = new T();
 
 		return obj;
 	}

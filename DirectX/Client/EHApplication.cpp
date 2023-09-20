@@ -7,6 +7,8 @@
 #include "EHRenderer.h"
 #include "EHTime.h"
 #include "EHInput.h"
+#include "EHMeshRenderer.h"
+#include "EHResources.h"
 
 namespace EH
 {
@@ -20,33 +22,19 @@ namespace EH
 		mHwnd = hWnd;
 		Time::Initialize();
 		Input::Initialize();
-		// DirectX Initialize
 
+		// DirectX Initialize
 		mGraphicsDevice = std::make_unique<D3D>();
 		GetDevice() = mGraphicsDevice.get();
 
-		Player* object = Object::Instantiate<Player>(L"shaders.hlsl");
-		object->GetComponent<Transform>()->SetPosition(Math::Vector3(0.f, 0.f, 0.f));
-		object->GetComponent<Transform>()->SetScale(Math::Vector3(0.1f, 0.1f, 0.1f));
+		renderer::Initialize();
 
-		/*float tempdata[18] =
-		{
-			0.f , 0.f, 0.f, 1.f, 0.f, 0.f,
-			0.f , 0.f, 1.f, 0.f, 1.f, 0.f,
-			0.f , 0.f, 0.f, 0.f, 0.f, 1.f
-		};*/
-		//object->SetVertexData(tempdata);
-		mGameObjects.push_back(object);
+		GameObject* testobject = Object::Instantiate<GameObject>();
+		MeshRenderer* temp = testobject->AddComponent<MeshRenderer>();
+		temp->SetMash(Resources::Find<Mesh>(L"TriangleMesh"));
+		temp->SetShader(Resources::Find<Shader>(L"TriangleShader"));
 
-		/*object = Object::Instantiate<GameObject>(L"shaders.hlsl");
-		float tempdata2[18] =
-		{
-			 0.0f - 0.5f,  0.5f, 0.f, 1.f, 0.f, 1.f,
-			0.5f - 0.5f,  -0.5f, 1.f, 0.f, 0.f, 1.f,
-			-0.5f - 0.5f, -0.5f, 0.f, 0.f, 1.f, 1.f
-		};
-		object->SetVertexData(tempdata2);
-		mGameObjects.push_back(object);	*/
+		mGameObjects.push_back(testobject);
 	}
 
 	void Application::Run()

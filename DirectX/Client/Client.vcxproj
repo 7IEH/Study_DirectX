@@ -144,6 +144,7 @@
     <ClInclude Include="EHPlayer.h" />
     <ClInclude Include="EHRenderer.h" />
     <ClInclude Include="EHResource.h" />
+    <ClInclude Include="EHResources.h" />
     <ClInclude Include="EHShader.h" />
     <ClInclude Include="EHTime.h" />
     <ClInclude Include="EHTrasnform.h" />
@@ -165,6 +166,7 @@
     <ClCompile Include="EHPlayer.cpp" />
     <ClCompile Include="EHRenderer.cpp" />
     <ClCompile Include="EHResource.cpp" />
+    <ClCompile Include="EHResources.cpp" />
     <ClCompile Include="EHShader.cpp" />
     <ClCompile Include="EHTime.cpp" />
     <ClCompile Include="EHTrasnform.cpp" />

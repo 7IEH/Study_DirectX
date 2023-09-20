@@ -21,6 +21,8 @@
 
 // Data Structure
 #include <vector>
+#include <map>
+#include <bitset>
 
 #include "EHMath.h"
 
@@ -30,6 +32,21 @@ namespace EH::enums
 	enum class eCommponentType
 	{
 		Transform
+		, MeshRenderer
 		, End
+	};
+}
+
+namespace EH::graphics
+{
+	enum class ShaderStage
+	{
+		VS,		// Vertex Shader
+		HS,		// Hull Shader
+		DS,		// Domain Shader
+		GS,		// Geometry Shader
+		PS,		// Pixel Shader
+		CS,		// Compute Shader
+		NONE,
 	};
 }

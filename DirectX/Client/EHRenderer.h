@@ -1,19 +1,21 @@
 #pragma once
 
 #include "Commoninclude.h"
+#include "EHMesh.h"
+#include "EHShader.h"
 
-namespace EH
+namespace EH::renderer
 {
-	class Renderer
+	struct Vertex
 	{
-		struct Vertex
-		{
-			Math::Vector3 pos;
-			Math::Vector4 Color;
-		};
-
-		void Initialize();
-		void Release();
+		Math::Vector3 pos;
+		Math::Vector4 Color;
 	};
+
+	void Initialize();
+	void Release();
+
+	extern Mesh* mesh;
+	extern Shader* shader;
 }
 

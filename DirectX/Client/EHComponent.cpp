@@ -17,6 +17,10 @@ namespace EH
 	{
 	}
 
+	void Component::FixedUpdate()
+	{
+	}
+
 	void Component::Update()
 	{
 	}
