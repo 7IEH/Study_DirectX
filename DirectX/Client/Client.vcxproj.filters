@@ -25,9 +25,6 @@
     <Filter Include="Contents">
       <UniqueIdentifier>{b0ba41d0-4572-491d-a07c-275b76188f84}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\D3D">
-      <UniqueIdentifier>{5250d48c-eb6c-4878-9d1b-73b2672a2baa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Contents\TestContents">
       <UniqueIdentifier>{4fafff5d-a551-40d7-89a7-09c533251997}</UniqueIdentifier>
     </Filter>
@@ -45,6 +42,27 @@
     </Filter>
     <Filter Include="Engine\Input">
       <UniqueIdentifier>{def910f2-81d9-44c5-84f5-b3ec8de0b989}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Graphics">
+      <UniqueIdentifier>{5932f18f-ef61-4abb-a120-3744ae376c4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Graphics\API">
+      <UniqueIdentifier>{32eece40-8f7b-4391-86b4-c2345f8c70b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Resource">
+      <UniqueIdentifier>{c8474f67-58a6-478e-87a6-cbc72991c723}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Entity">
+      <UniqueIdentifier>{2c2a0842-62af-4641-a71d-657670f94c67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\MeshRenderer">
+      <UniqueIdentifier>{d11734d0-7e6c-4533-9ef1-9f43925e312e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Resource\Shader">
+      <UniqueIdentifier>{45b89dad-4b74-4a34-ae1e-29c8c3edfefb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Resource\Mesh">
+      <UniqueIdentifier>{9d2f17b5-d440-49ec-94b6-8106ff748a9f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -65,9 +83,6 @@
     </ClInclude>
     <ClInclude Include="EHApplication.h">
       <Filter>Engine\High Level Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="EHD3D.h">
-      <Filter>Engine\D3D</Filter>
     </ClInclude>
     <ClInclude Include="EHGameObject.h">
       <Filter>Engine\GameObject</Filter>
@@ -96,6 +111,27 @@
     <ClInclude Include="EHMath.h">
       <Filter>Engine\Common</Filter>
     </ClInclude>
+    <ClInclude Include="EHD3D.h">
+      <Filter>Engine\Graphics\API</Filter>
+    </ClInclude>
+    <ClInclude Include="EHRenderer.h">
+      <Filter>Engine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="EHResource.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="EHEntity.h">
+      <Filter>Engine\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="EHMeshRenderer.h">
+      <Filter>Engine\Component\MeshRenderer</Filter>
+    </ClInclude>
+    <ClInclude Include="EHMesh.h">
+      <Filter>Engine\Resource\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="EHShader.h">
+      <Filter>Engine\Resource\Shader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Client.ico">
@@ -109,9 +145,6 @@
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="EHApplication.cpp">
       <Filter>Engine\High Level Interface</Filter>
-    </ClCompile>
-    <ClCompile Include="EHD3D.cpp">
-      <Filter>Engine\D3D</Filter>
     </ClCompile>
     <ClCompile Include="EHGameObject.cpp">
       <Filter>Engine\GameObject</Filter>
@@ -133,6 +166,27 @@
     </ClCompile>
     <ClCompile Include="EHInput.cpp">
       <Filter>Engine\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="EHD3D.cpp">
+      <Filter>Engine\Graphics\API</Filter>
+    </ClCompile>
+    <ClCompile Include="EHRenderer.cpp">
+      <Filter>Engine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="EHResource.cpp">
+      <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="EHEntity.cpp">
+      <Filter>Engine\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="EHMeshRenderer.cpp">
+      <Filter>Engine\Component\MeshRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="EHMesh.cpp">
+      <Filter>Engine\Resource\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="EHShader.cpp">
+      <Filter>Engine\Resource\Shader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

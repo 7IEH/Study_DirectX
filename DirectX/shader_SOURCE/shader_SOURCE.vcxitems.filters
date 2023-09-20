@@ -12,10 +12,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)..\Client\shaders.hlsl">
+    <None Include="$(MSBuildThisFileDirectory)..\Client\TrianglePS.hlsl">
       <Filter>Shader\Pixel Shader</Filter>
     </None>
-    <None Include="$(MSBuildThisFileDirectory)..\Client\shaders2.hlsl">
+    <None Include="$(MSBuildThisFileDirectory)..\Client\TriangleVS.hlsl">
       <Filter>Shader\Vertex Shader</Filter>
     </None>
   </ItemGroup>

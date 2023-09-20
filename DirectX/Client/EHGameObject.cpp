@@ -28,7 +28,7 @@ namespace EH
 		ID3DBlob* shaderCompileErrorBlob = nullptr;
 		{
 			HRESULT hResult = D3DCompileFromFile(
-				mShader.c_str()
+				  L"TriangleVS.hlsl"
 				, nullptr
 				, nullptr
 				, "vs_main"
@@ -63,7 +63,8 @@ namespace EH
 			// 3. ID3D11ClassLinkage* : 클래스 연결 인터페이스에 대한 포인터입니다.
 			// 4. ID3D11VertexShader** : 생성된 vertexshader를 반환합니다.
 
-			hResult = D3D::GetD3DDevice()->CreateVertexShader(
+			hResult = GetDevice()->GetGPUDevice().Get()->
+				CreateVertexShader(
 				vsblob->GetBufferPointer()
 				, vsblob->GetBufferSize()
 				, nullptr
@@ -76,7 +77,7 @@ namespace EH
 			ID3DBlob* psBlob;
 			ID3DBlob* shaderCompileErrorBlob;
 			HRESULT hResult = D3DCompileFromFile(
-				mShader.c_str()
+				 L"TrianglePS.hlsl"
 				, nullptr
 				, nullptr
 				, "ps_main"
@@ -113,7 +114,7 @@ namespace EH
 			// 3. ID3D11ClassLinkage* : 클래스 연결 인터페이스에 대한 포인터입니다.
 			// 4. ID3D11PixelShader** : 생성된 pixel shader를 반환합니다.
 
-			hResult = D3D::GetD3DDevice()->CreatePixelShader
+			hResult = GetDevice()->GetGPUDevice().Get()->CreatePixelShader
 			(
 				psBlob->GetBufferPointer()
 				, psBlob->GetBufferSize()
@@ -156,7 +157,7 @@ namespace EH
 			// 5. ppInputLayout : 생성된 inputlayout을 반환합니다.
 			// InputLayout 
 
-			HRESULT hResult = D3D::GetD3DDevice()->CreateInputLayout(
+			HRESULT hResult = GetDevice()->GetGPUDevice().Get()->CreateInputLayout(
 				inputElementDesc
 				, ARRAYSIZE(inputElementDesc)
 				, vsblob->GetBufferPointer()
@@ -174,12 +175,42 @@ namespace EH
 		// vertexshader는 정점에 대한 정보를, 정점 단계를 지나 resterization을 통해 하나의 도형이 된
 		// 정점들의 색을 입히는 작업을 합니다.
 
-		
-		D3D::GetD3DDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-		D3D::GetD3DDeviceContext()->IASetInputLayout(mInputLayout);
-		D3D::GetD3DDeviceContext()->VSSetShader(mVertexShader, nullptr, 0);
-		D3D::GetD3DDeviceContext()->PSSetShader(mPixelShader, nullptr, 0);
+		// 이제 그리기에 사용할 buffer를 만들어줍니다.
+		// 버퍼의 형식에 대해 명시해줍니다.
+		// 1. ByteWidth : buffer의 크기를 지정합니다.
+		// 2. Usage : buffer를 읽고 쓰는 방법을 지정합니다.
+		// D3D11_USAGE_IMMUTABLE은 이 buffer는 만든 후 수정이 불가능합니다.
+		// 3. BindFlags : buffer 유형을 선택합니다.
 
+		D3D11_BUFFER_DESC vertexBufferDesc = {};
+		vertexBufferDesc.ByteWidth = sizeof(vertexData);
+		vertexBufferDesc.Usage = D3D11_USAGE_IMMUTABLE;
+		vertexBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+
+		// buffer에 초기화 될 값을 저장하는 객체입니다.
+		float tempdata[18] =
+		{
+			0.f , 0.5f, 1.f, 0.f, 0.f, 0.f,
+			0.5f , -0.5f, 0.f, 1.f, 0.f, 0.f,
+			-0.5f , -0.5f, 0.f, 0.f, 1.f, 0.f
+		};
+
+	
+		SetVertexData(tempdata);
+
+		D3D11_SUBRESOURCE_DATA vertexSubresourceData = { vertexData };
+
+		// 1. pDesc : 생성할 buffer의 형식을 지정합니다.
+		// 2. pInitialData : buffer의 초기화 값
+		// 3. ppbuffer : pDesc에 입력한 형식의 buffer을 반환합니다.
+
+		HRESULT hResult = GetDevice()->GetGPUDevice().Get()->CreateBuffer(
+			&vertexBufferDesc
+			, &vertexSubresourceData
+			, &mVertexBuffer);
+		assert(SUCCEEDED(hResult));
+
+		// ->Vertex buffer 생성
 	}
 
 	GameObject::~GameObject()
@@ -192,38 +223,10 @@ namespace EH
 
 	void GameObject::Update()
 	{
-		// 이제 그리기에 사용할 buffer를 만들어줍니다.
-		// 버퍼의 형식에 대해 명시해줍니다.
-		// 1. ByteWidth : buffer의 크기를 지정합니다.
-		// 2. Usage : buffer를 읽고 쓰는 방법을 지정합니다.
-		// D3D11_USAGE_IMMUTABLE은 이 buffer는 만든 후 수정이 불가능합니다.
-		// 3. BindFlags : buffer 유형을 선택합니다.
-
-		D3D11_BUFFER_DESC vertexBufferDesc = {};
-		vertexBufferDesc.ByteWidth = sizeof(vertexData);
-		vertexBufferDesc.Usage = D3D11_USAGE_IMMUTABLE;
-		vertexBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-		
-		// buffer에 초기화 될 값을 저장하는 객체입니다.
-
-		for (Component* comp : mComponents)
-		{
-			comp->Update();
-		}
-
-		D3D11_SUBRESOURCE_DATA vertexSubresourceData = { vertexData };
-
-		// 1. pDesc : 생성할 buffer의 형식을 지정합니다.
-		// 2. pInitialData : buffer의 초기화 값
-		// 3. ppbuffer : pDesc에 입력한 형식의 buffer을 반환합니다.
-
-		HRESULT hResult = D3D::GetD3DDevice()->CreateBuffer(
-			&vertexBufferDesc
-			, &vertexSubresourceData
-			, &mVertexBuffer);
-		assert(SUCCEEDED(hResult));
-
-		// ->Vertex buffer 생성
+		GetDevice()->GetGPUContext().Get()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		GetDevice()->GetGPUContext().Get()->IASetInputLayout(mInputLayout);
+		GetDevice()->GetGPUContext().Get()->VSSetShader(mVertexShader, nullptr, 0);
+		GetDevice()->GetGPUContext().Get()->PSSetShader(mPixelShader, nullptr, 0);
 	}
 
 	void GameObject::Render()
@@ -235,12 +238,11 @@ namespace EH
 		// 4. pStrides : stride 배열의 시작 위치. 즉, 버퍼 안에 하나의 정점를 구분하는 크기
 		// 5. pOffsets : offset 배열의 시작 위치. 버퍼안에 정점의 시작 위치에 offset 크기
 
-
-		D3D::GetD3DDeviceContext()->IASetVertexBuffers(0, 1, &mVertexBuffer, &mStride, &mOffset);
+		GetDevice()->GetGPUContext().Get()->IASetVertexBuffers(0, 1, &mVertexBuffer, &mStride, &mOffset);
 
 		// 1. VertexCount : 그릴 정점의 수
 		// 2. StartVertexLocation : 정점 버퍼의 첫번째 인덱스
 
-		D3D::GetD3DDeviceContext()->Draw(mNumVerts, 0);
+		GetDevice()->GetGPUContext().Get()->Draw(mNumVerts, 0);
 	}
 }

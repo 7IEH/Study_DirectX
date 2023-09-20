@@ -1,13 +1,13 @@
 #pragma once
 
 #include "Commoninclude.h"
+#include "EHD3D.h"
 
 namespace EH
 {
 	class Application
 	{
 	public:
-		Application();
 		~Application();
 
 		void Initialize(HWND);
@@ -27,6 +27,8 @@ namespace EH
 		bool mGlobal_windowDidResize;
 
 		std::vector<class GameObject*> mGameObjects;
+
+		std::unique_ptr<EH::D3D> mGraphicsDevice;
 	};
 }
 

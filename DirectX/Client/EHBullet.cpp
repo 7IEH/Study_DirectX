@@ -26,6 +26,8 @@ namespace EH
 		Math::Vector3 pos = tr->GetPosition();
 		pos.x += cosf(mRadian) * 0.01f;
 		pos.y += sinf(mRadian) * 0.01f;
+		//tr->SetDegree(mRadian * 180.f / 3.14f);
+		//float degree = mRadian * 180.f / 3.14f;
 		tr->SetPosition(pos);
 	}
 

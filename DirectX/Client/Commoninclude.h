@@ -4,6 +4,12 @@
 #include "framework.h"
 #include "Client.h"
 
+// unique_point
+#include<memory>
+
+// ComPtr
+#include<wrl.h>
+
 // DX11
 #include <d3d11_1.h>
 #pragma comment(lib,"d3d11.lib")

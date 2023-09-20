@@ -1,21 +1,16 @@
 #include "EHD3D.h"
+#include "EHApplication.h"
 
-namespace EH 
+extern EH::Application application;
+
+namespace EH
 {
-
-	ID3D11Device1* D3D::mD3d11Device;
-	ID3D11DeviceContext1* D3D::mD3d11DeviceContext;
-	ID3D11RenderTargetView* D3D::mD3d11FrameBufferView;
-	IDXGISwapChain1* D3D::mD3d11SwapChain;
-
-	void D3D::Initialize(HWND hWnd)
+	D3D::D3D()
 	{
 		// Device and Device Context Create
 		{
-			ID3D11Device* baseDevice;
-			ID3D11DeviceContext* baseDeviceContext;
-			D3D_FEATURE_LEVEL featureLevels[] = { D3D_FEATURE_LEVEL_11_0 };
-			UINT creationFlags = D3D11_CREATE_DEVICE_BGRA_SUPPORT;
+			D3D_FEATURE_LEVEL featureLevels = (D3D_FEATURE_LEVEL)0;
+			UINT creationFlags = D3D11_CREATE_DEVICE_DEBUG;
 
 			// D3D11CreateDevice Parameter
 			// 1. pAdapter : 연결할 그래픽 어댑터(GPU를 뜻함)(0 or NULL 사용시 기본 장치에 연결) 
@@ -32,16 +27,16 @@ namespace EH
 			// 9. *pFeatureLevel : 위에 feature 수준이 성공한다면 그 기능 첫번째 수준을 반환합니다.
 			// 10. *ppImmdiateContext : 만들어낸 디바이스 콘텍스트 객체를 반환합니다.
 
-			HRESULT hResult = D3D11CreateDevice(0
+			HRESULT hResult = D3D11CreateDevice(nullptr
 				, D3D_DRIVER_TYPE_HARDWARE
-				, 0
+				, nullptr
 				, creationFlags
-				, featureLevels
-				, ARRAYSIZE(featureLevels)
-				, D3D11_SDK_VERSION
-				, &baseDevice
+				, nullptr
 				, 0
-				, &baseDeviceContext);
+				, D3D11_SDK_VERSION
+				, mDevice.GetAddressOf()
+				, &featureLevels
+				, mContext.GetAddressOf());
 
 			if (FAILED(hResult))
 			{
@@ -56,19 +51,45 @@ namespace EH
 			// ID3D11Device1를 얻기 위해서는 ID3D11Device를 먼저 생성해야함
 			// 마찬가지로, ID3D11DeviceContext1를 얻기위해서는 ID3D11DeviceContext를 먼저 생성해야함
 
-			hResult = baseDevice->QueryInterface(__uuidof(ID3D11Device1), (void**)&mD3d11Device);
-			assert(SUCCEEDED(hResult));
-			// 이제 필요없는 baseDevice는 할당을 해제해준다.
-			baseDevice->Release();
+			//hResult = baseDevice->QueryInterface(__uuidof(ID3D11Device1), (void**)&mD3d11Device);
+			//assert(SUCCEEDED(hResult));
+			//// 이제 필요없는 baseDevice는 할당을 해제해준다.
+			//baseDevice->Release();
 
-			hResult = baseDeviceContext->QueryInterface(__uuidof(ID3D11DeviceContext1), (void**)&mD3d11DeviceContext);
-			assert(SUCCEEDED(hResult));
-			baseDeviceContext->Release();
+			//hResult = baseDeviceContext->QueryInterface(__uuidof(ID3D11DeviceContext1), (void**)&mD3d11DeviceContext);
+			//assert(SUCCEEDED(hResult));
+			//baseDeviceContext->Release();
 
 			// -> 이로서 device와 devicecontext는 생성완료
 
 		}
 
+		if (!CreateSwapChain(application.GetHWND()))
+		{
+			MessageBoxA(0, "D3D11CreativeSwapChain() failed", "fatal Error", MB_OK);
+		}
+
+		// FrameBuffer Render Target -> 그래픽 장치에서 그려줄 bitmap 느낌
+		// view는 그 bitmap에 접근할 수 있는 COM객체이다.
+		// 그 bitmap이 필요하기에 접근하기 위한 view객체를 생성해줍니다.
+		{
+			HRESULT hResult = mSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)mFrameBuffer.GetAddressOf());
+			assert(SUCCEEDED(hResult));
+
+			// swapchain에 백버퍼 중 하나에 접근하기 위한 함수
+			hResult = mDevice->CreateRenderTargetView(mFrameBuffer.Get(), 0, mRenderTargetView.GetAddressOf());
+			assert(SUCCEEDED(hResult));
+
+			// 그 백 버퍼를 대상으로하는 view 객체를 생성합니다.
+			// 마지막 매개 변수를 통해 생성된 view 객체를 반환 받습니다.
+		}
+	}
+	D3D::~D3D()
+	{
+	}
+
+	bool D3D::CreateSwapChain(HWND hWnd)
+	{
 		// SwapChain Create
 		{
 			// 전체 화면 전환을 처리하는 DXGI 개체를 생성하는 메서드를 구현하는 것
@@ -87,35 +108,35 @@ namespace EH
 				- 프레젠테이션
 
 				- 풀스크린 모드*/
-			// 이 중에 스왑체인을 생성하기 위해서 DXGI(DirectX Graphics Infrastructure)를 사용해야하며
-			// , DXGI 인터페이스를 사용하기 위해서는 DXGI Factory 객체를 생성해야한다.
-			IDXGIFactory2* dxgiFactory;
-			{
-				// DXGI Interface 역시 COM 객체 이기때문에 접근하기 위해서는 QueryInterface가 필요합니다. 
-				// 현재 할당된 device 정보를 활용해 dxgi 인터페이스 device를 먼저 할당합니다. 
-				IDXGIDevice1* dxgiDevice;
-				HRESULT hResult = mD3d11Device->QueryInterface(__uuidof(IDXGIDevice1), (void**)&dxgiDevice);
-				assert(SUCCEEDED(hResult));
+				// 이 중에 스왑체인을 생성하기 위해서 DXGI(DirectX Graphics Infrastructure)를 사용해야하며
+				// , DXGI 인터페이스를 사용하기 위해서는 DXGI Factory 객체를 생성해야한다.
+			Microsoft::WRL::ComPtr<IDXGIFactory> dxgiFactory = nullptr;
+			Microsoft::WRL::ComPtr<IDXGIDevice> dxgiDevice = nullptr;
+			Microsoft::WRL::ComPtr<IDXGIAdapter> dxgiAdapter = nullptr;
+			// DXGI Interface 역시 COM 객체 이기때문에 접근하기 위해서는 QueryInterface가 필요합니다. 
+			// 현재 할당된 device 정보를 활용해 dxgi 인터페이스 device를 먼저 할당합니다. 
 
-				// 현재 연결된 GPU에 대한 정보를 DEBUG 정보를 표시할 때 표시하기 위해
-				// adapter 객체에 접근합니다.
-				IDXGIAdapter* dxgiAdapter;
-				hResult = dxgiDevice->GetAdapter(&dxgiAdapter);
-				assert(SUCCEEDED(hResult));
-				dxgiDevice->Release();
+			HRESULT hResult = mDevice->QueryInterface(__uuidof(IDXGIDevice), (void**)dxgiDevice.GetAddressOf());
+			assert(SUCCEEDED(hResult));
 
-				DXGI_ADAPTER_DESC adapterDesc;
-				dxgiAdapter->GetDesc(&adapterDesc);
+			// 현재 연결된 GPU에 대한 정보를 DEBUG 정보를 표시할 때 표시하기 위해
+			// adapter 객체에 접근합니다.
+			hResult = dxgiDevice->GetParent(__uuidof(IDXGIAdapter), (void**)dxgiAdapter.GetAddressOf());
+			assert(SUCCEEDED(hResult));
+			dxgiDevice->Release();
 
-				OutputDebugStringA("Graphics Device: ");
-				OutputDebugStringW(adapterDesc.Description);
+			DXGI_ADAPTER_DESC adapterDesc;
+			dxgiAdapter->GetDesc(&adapterDesc);
 
-				// DXGIAdapter는 DXGIObject를 상속 받는 객체로 해당 DXGIobject 객체를 활용해
-				// dxgifactory2 인터페이스에 접근합니다.
-				hResult = dxgiAdapter->GetParent(__uuidof(IDXGIFactory2), (void**)&dxgiFactory);
-				assert(SUCCEEDED(hResult));
-				dxgiAdapter->Release();
-			}
+			OutputDebugStringA("Graphics Device: ");
+			OutputDebugStringW(adapterDesc.Description);
+
+			// DXGIAdapter는 DXGIObject를 상속 받는 객체로 해당 DXGIobject 객체를 활용해
+			// dxgifactory2 인터페이스에 접근합니다.
+			hResult = dxgiAdapter->GetParent(__uuidof(IDXGIFactory), (void**)dxgiFactory.GetAddressOf());
+			assert(SUCCEEDED(hResult));
+			dxgiAdapter->Release();
+
 
 			// 얻은 DXGIFactory를 활용해 swapchain을 생성하기 위해
 			// swapchain에 option을 설정해줍니다.
@@ -132,20 +153,25 @@ namespace EH
 			// 10. AlphaMode : 백 버퍼의 alpha값을 조정합니다.
 			// 11. Flags : 스왑 체인 옵션 값
 
-			DXGI_SWAP_CHAIN_DESC1 d3d11SwapChainDesc = {};
-			d3d11SwapChainDesc.Width = 0;
-			d3d11SwapChainDesc.Height = 0;
-			d3d11SwapChainDesc.Format = DXGI_FORMAT_B8G8R8A8_UNORM_SRGB;
-			d3d11SwapChainDesc.SampleDesc.Count = 1;
-			d3d11SwapChainDesc.SampleDesc.Quality = 0; 
-			d3d11SwapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+			DXGI_SWAP_CHAIN_DESC d3d11SwapChainDesc = {};
+			d3d11SwapChainDesc.OutputWindow = application.GetHWND();	                // Front Buffer 를 출력시킬 윈도우 핸들
+			d3d11SwapChainDesc.Windowed = true;		                // 윈도우, 전체화면 모드
 			d3d11SwapChainDesc.BufferCount = 2;
-			d3d11SwapChainDesc.Scaling = DXGI_SCALING_STRETCH;
-			d3d11SwapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
-			d3d11SwapChainDesc.AlphaMode = DXGI_ALPHA_MODE_UNSPECIFIED;
-			d3d11SwapChainDesc.Flags = 0;
+			d3d11SwapChainDesc.SwapEffect = DXGI_SWAP_EFFECT_DISCARD; // 이전 프레임 장면을 유지하지 않는다.
 
+			d3d11SwapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+			d3d11SwapChainDesc.BufferDesc.Width = 1600;
+			d3d11SwapChainDesc.BufferDesc.Height = 900;
+			d3d11SwapChainDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+			d3d11SwapChainDesc.BufferDesc.RefreshRate.Numerator = 144;
+			d3d11SwapChainDesc.BufferDesc.RefreshRate.Denominator = 1;
+			d3d11SwapChainDesc.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
+			d3d11SwapChainDesc.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
+
+			d3d11SwapChainDesc.SampleDesc.Count = 1;
+			d3d11SwapChainDesc.SampleDesc.Quality = 0;
 			// Hwnd와 연결된 swapchain를 생성하는 함수
+
 			// 1. pDevice : 현재 devicecontext 즉, 그려주는 객체에 대해 연결 시켜야함
 			// 2. hWnd : 연결할 윈도우 핸들
 			// 3. pDesc : DXGI_SWAP_CHAIN_DESC1 즉, swapchain에 옵션 값
@@ -153,51 +179,19 @@ namespace EH
 			// 5. pRestrictToOutput : 스왑 체인 출력 제한에 대한 옵션이다.
 			// 6. ppSwapChain : 생성된 swapchain을 반환한다.
 
-			HRESULT hResult = dxgiFactory->CreateSwapChainForHwnd(
-				  mD3d11Device
-				, hWnd
+			 hResult = dxgiFactory->CreateSwapChain(
+				mDevice.Get()
 				, &d3d11SwapChainDesc
-				, 0
-				, 0
-				, &mD3d11SwapChain);
-
-
+				, mSwapChain.GetAddressOf());
 
 			// 스왑 체인이랑 응용 프로그램이 새 화면을 제공하면, 이를 현재 첫 버퍼와 교체하는 작업을 의미합니다.
-			// 이를 스와핑 또는 플리핑이라합니다.
-			// 현재 해들과 연결된 스왑 체인을 만들어냅니다.
+		// 이를 스와핑 또는 플리핑이라합니다.
+		// 현재 해들과 연결된 스왑 체인을 만들어냅니다.
 			assert(SUCCEEDED(hResult));
 
 			dxgiFactory->Release();
 		}
 
-		// FrameBuffer Render Target -> 그래픽 장치에서 그려줄 bitmap 느낌
-		// view는 그 bitmap에 접근할 수 있는 COM객체이다.
-		// 그 bitmap이 필요하기에 접근하기 위한 view객체를 생성해줍니다.
-		{
-			ID3D11Texture2D* d3d11FrameBuffer;
-			HRESULT hResult = mD3d11SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&d3d11FrameBuffer);
-			assert(SUCCEEDED(hResult));
-
-			// swapchain에 백버퍼 중 하나에 접근하기 위한 함수
-
-			hResult = mD3d11Device->CreateRenderTargetView(d3d11FrameBuffer, 0, &mD3d11FrameBufferView);
-			assert(SUCCEEDED(hResult));
-			d3d11FrameBuffer->Release();
-
-			// 그 백 버퍼를 대상으로하는 view 객체를 생성합니다.
-			// 마지막 매개 변수를 통해 생성된 view 객체를 반환 받습니다.
-			
-		}
-	}
-
-	void D3D::Update()
-	{
-
-	}
-
-	void D3D::Render()
-	{
-
+		return true;
 	}
 }

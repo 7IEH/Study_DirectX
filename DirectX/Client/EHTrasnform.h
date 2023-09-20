@@ -20,9 +20,12 @@ namespace EH
 		void SetScale(Math::Vector3 scale) { mScale = scale; }
 		Math::Vector3 GetScale() { return mScale; }
 
+		void SetDegree(float degree) { mDegree = degree; }
+
 	private:
 		Math::Vector3 mPosition;
 		Math::Vector3 mScale;
+		float mDegree;
 	};
 }
 

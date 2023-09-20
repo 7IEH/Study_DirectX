@@ -4,38 +4,38 @@
 #include "EHObject.h"
 #include "EHPlayer.h"
 #include "EHTrasnform.h"
+#include "EHRenderer.h"
+#include "EHTime.h"
+#include "EHInput.h"
 
 namespace EH
 {
-	Application::Application()
-		:
-		  mHwnd(nullptr)
-		, mGlobal_windowDidResize(false)
-	{
-	}
-
 	Application::~Application()
 	{
 	}
 
 	void Application::Initialize(HWND hWnd)
 	{
+		mGlobal_windowDidResize = false;
 		mHwnd = hWnd;
-
+		Time::Initialize();
+		Input::Initialize();
 		// DirectX Initialize
-		D3D::Initialize(hWnd);
+
+		mGraphicsDevice = std::make_unique<D3D>();
+		GetDevice() = mGraphicsDevice.get();
 
 		Player* object = Object::Instantiate<Player>(L"shaders.hlsl");
 		object->GetComponent<Transform>()->SetPosition(Math::Vector3(0.f, 0.f, 0.f));
 		object->GetComponent<Transform>()->SetScale(Math::Vector3(0.1f, 0.1f, 0.1f));
 
-		float tempdata[18] =
+		/*float tempdata[18] =
 		{
-			0.f , 0.f, 0.f, 0.f, 1.f, 1.f,
-			0.f , 0.f, 1.f, 1.f, 0.f, 1.f,
-			0.f , 0.f, 0.f, 0.f, 1.f, 1.f
-		};
-		object->SetVertexData(tempdata);
+			0.f , 0.f, 0.f, 1.f, 0.f, 0.f,
+			0.f , 0.f, 1.f, 0.f, 1.f, 0.f,
+			0.f , 0.f, 0.f, 0.f, 0.f, 1.f
+		};*/
+		//object->SetVertexData(tempdata);
 		mGameObjects.push_back(object);
 
 		/*object = Object::Instantiate<GameObject>(L"shaders.hlsl");
@@ -57,6 +57,8 @@ namespace EH
 
 	void Application::Update()
 	{
+		Time::Update();
+		Input::Update();
 		std::vector<class GameObject*> objects = mGameObjects;
 		std::vector<GameObject*>::iterator iter = objects.begin();
 
@@ -68,7 +70,7 @@ namespace EH
 
 	void Application::Render()
 	{
-
+		Time::Render();
 		// DC에 설정된 rendertarget에 관련된 내용에 대해 reset 시킵니다.
 
 			// DXGI_SWAP_CHAIN_DESC1를 통해 설정한 buffer의 옵션을
@@ -86,37 +88,37 @@ namespace EH
 
 		// -> resizing 된 rendertarget을 가지게 된다.
 
-		if (mGlobal_windowDidResize)
+		/*if (mGlobal_windowDidResize)
 		{
-			D3D::GetD3DDeviceContext()->OMSetRenderTargets(0, 0, 0);
-			D3D::GetD3DView()->Release();
+			GetDevice()->GetGPUContext().Get()->OMSetRenderTargets(0, 0, 0);
+			GetDevice()->GetView().Get()->Release();
 
-			HRESULT res = D3D::GetSwapChain()->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, 0);
+			HRESULT res = GetDevice()->GetSwapChain()->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, 0);
 			assert(SUCCEEDED(res));
 
 			ID3D11Texture2D* d3d11FrameBuffer;
 		
-			res = D3D::GetSwapChain()->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&d3d11FrameBuffer);
+			res = GetDevice()->GetSwapChain().Get()->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&d3d11FrameBuffer);
 			assert(SUCCEEDED(res));
 
 		
 			ID3D11RenderTargetView* temp;
-			res = D3D::GetD3DDevice()->CreateRenderTargetView(d3d11FrameBuffer, NULL, &temp);
-			D3D::SetD3DView(temp);
+			res = GetDevice()->GetGPUDevice().Get()->CreateRenderTargetView(d3d11FrameBuffer, NULL, &temp);
+			GetDevice()->SetView(temp);
 
 			assert(SUCCEEDED(res));
 			d3d11FrameBuffer->Release();
 
 			mGlobal_windowDidResize = false;
-		}
+		}*/
 
 
 		// 현재 view의 rendertarget을 ColorRGBA매개변수의 색깔로 변환합니다.
 
 		FLOAT backgroundColor[4] = { 1.f,1.f,1.f,1.f };
 
-		D3D::GetD3DDeviceContext()->ClearRenderTargetView(
-			D3D::GetD3DView(),
+		GetDevice()->GetGPUContext().Get()->ClearRenderTargetView(
+			GetDevice()->GetView().Get(),
 			backgroundColor);
 
 		RECT winRect = {};
@@ -136,16 +138,16 @@ namespace EH
 		// 1. NumViewports : 적용할 뷰포트의 갯수
 		// 2. pViewports : 적용할 뷰포트 주소
 
-		D3D::GetD3DDeviceContext()->RSSetViewports(1, &viewport);
+		GetDevice()->GetGPUContext().Get()->RSSetViewports(1, &viewport);
 
 		// 렌더 타켓 뷰를 Output merger를 한다.
 		// 1. NumViews : 렌더 타겟의 수
 		// 2. ppRenderTargetViews : 렌더 타겟을 가리키는 view 객체
 		// 3. 깊이 테스트에 사용하는 버퍼
 
-		ID3D11RenderTargetView* temp = D3D::GetD3DView();
-		D3D::GetD3DDeviceContext()->OMSetRenderTargets(1, &temp, nullptr);
-		D3D::SetD3DView(temp);
+		ID3D11RenderTargetView* temp = GetDevice()->GetView().Get();
+		GetDevice()->GetGPUContext().Get()->OMSetRenderTargets(1, &temp, nullptr);
+		GetDevice()->SetView(temp);
 	
 
 		std::vector<GameObject*>::iterator iter = mGameObjects.begin();
@@ -156,6 +158,6 @@ namespace EH
 
 		// 백버퍼에 렌더링된이미지를 보여줍니다.
 
-		D3D::GetSwapChain()->Present(1, 0);
+		GetDevice()->GetSwapChain()->Present(1, 0);
 	}
 }

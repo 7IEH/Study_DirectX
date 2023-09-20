@@ -65,7 +65,6 @@ namespace EH
 		UINT mTest;
 
 		std::vector<Component*> mComponents;
-
 	};
 }
 
