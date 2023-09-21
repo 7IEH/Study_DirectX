@@ -20,7 +20,7 @@ namespace EH
 		GameObject* testobject = Object::Instantiate<GameObject>(enums::eLayerType::Player);
 		
 		MeshRenderer* temp = testobject->AddComponent<MeshRenderer>();
-		temp->SetMash(Resources::Find<Mesh>(L"TriangleMesh"));
+		temp->SetMesh(Resources::Find<Mesh>(L"TriangleMesh"));
 		temp->SetShader(Resources::Find<Shader>(L"TriangleShader"));
 
 		Transform* tr = testobject->AddComponent<Transform>();

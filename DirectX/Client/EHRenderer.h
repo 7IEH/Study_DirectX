@@ -13,10 +13,19 @@ namespace EH::renderer
 		Math::Vector4 Color;
 	};
 
+	struct CBUFFER
+	{
+		Math::Vector3 pos;
+		int pad1;
+		Math::Vector3 scale;
+		int pad2;
+	};
+
 	void Initialize();
 	void Release();
 
 	extern Mesh* mesh;
+	extern Mesh* mesh1;
 	extern Shader* shader;
 	extern ConstantBuffer* constantBuffers[];
 }

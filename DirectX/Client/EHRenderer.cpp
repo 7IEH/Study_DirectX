@@ -8,6 +8,7 @@ namespace EH::renderer
 {
 	D3D11_INPUT_ELEMENT_DESC InputLayouts[2];
 	Mesh* mesh = nullptr;
+	Mesh* mesh1 = nullptr;
 	Shader* shader = nullptr;
 	ConstantBuffer* constantBuffers[(UINT)enums::CBYTES::END];
 
@@ -36,8 +37,29 @@ namespace EH::renderer
 		mesh->CreateVertexBuffer(vertexes.data(), 3);
 		Resources::Insert(L"TriangleMesh", mesh);
 
+		vertexes[0].pos = Math::Vector3(0.f, 0.1f, 0.F);
+		vertexes[0].Color = Math::Vector4(1.f, 0.f, 0.f, 0.f);
+
+		vertexes[1].pos = Math::Vector3(0.1f, -0.1f, 0.f);
+		vertexes[1].Color = Math::Vector4(0.f, 1.f, 0.f, 0.f);
+
+		vertexes[2].pos = Math::Vector3(-0.1f, -0.1f, 0.f);
+		vertexes[2].Color = Math::Vector4(0.f, 0.f, 1.f, 1.f);
+
+		/*std::vector<UINT> indexes;
+		indexes.push_back(0);
+		indexes.push_back(2);
+		indexes.push_back(3);
+
+		indexes.push_back(0);
+		indexes.push_back(1);
+		indexes.push_back(2);*/
+
+		mesh1->CreateVertexBuffer(vertexes.data(), 3);
+		Resources::Insert(L"BulletMesh", mesh1);
+
 		constantBuffers[(UINT)enums::CBYTES::Transform] = new ConstantBuffer();
-		constantBuffers[(UINT)enums::CBYTES::Transform]->Create(sizeof(Math::Vector4));
+		constantBuffers[(UINT)enums::CBYTES::Transform]->Create(sizeof(CBUFFER));
 		constantBuffers[(UINT)enums::CBYTES::Transform]->SetType(enums::CBYTES::Transform);
 	}
 
@@ -66,6 +88,7 @@ namespace EH::renderer
 	void Initialize()
 	{
 		mesh = new Mesh();
+		mesh1 = new Mesh();
 		shader = new Shader();
 
 		LoadShader();

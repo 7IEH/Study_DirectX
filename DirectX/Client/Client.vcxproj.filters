@@ -25,9 +25,6 @@
     <Filter Include="Contents">
       <UniqueIdentifier>{b0ba41d0-4572-491d-a07c-275b76188f84}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents\TestContents">
-      <UniqueIdentifier>{4fafff5d-a551-40d7-89a7-09c533251997}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Engine\Component">
       <UniqueIdentifier>{8d53bc34-2dec-490d-a9f7-d66a85ce456a}</UniqueIdentifier>
     </Filter>
@@ -39,12 +36,6 @@
     </Filter>
     <Filter Include="Engine\Input">
       <UniqueIdentifier>{def910f2-81d9-44c5-84f5-b3ec8de0b989}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Graphics">
-      <UniqueIdentifier>{5932f18f-ef61-4abb-a120-3744ae376c4c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Engine\Graphics\API">
-      <UniqueIdentifier>{32eece40-8f7b-4391-86b4-c2345f8c70b0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Engine\Resource">
       <UniqueIdentifier>{c8474f67-58a6-478e-87a6-cbc72991c723}</UniqueIdentifier>
@@ -85,6 +76,15 @@
     <Filter Include="Contents\Scripts\Player">
       <UniqueIdentifier>{7892a787-7aba-4852-ad4a-9ef3fc4d3757}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents\Scripts\Bullet">
+      <UniqueIdentifier>{8f40b165-e305-4dab-b949-72ca1e9480ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Graphics">
+      <UniqueIdentifier>{5932f18f-ef61-4abb-a120-3744ae376c4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Graphics\API">
+      <UniqueIdentifier>{32eece40-8f7b-4391-86b4-c2345f8c70b0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Client.h">
@@ -110,9 +110,6 @@
     </ClInclude>
     <ClInclude Include="EHObject.h">
       <Filter>Engine\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="EHBullet.h">
-      <Filter>Contents\TestContents</Filter>
     </ClInclude>
     <ClInclude Include="EHTrasnform.h">
       <Filter>Engine\Component\Transform</Filter>
@@ -168,9 +165,14 @@
     <ClInclude Include="EHConstantBuffer.h">
       <Filter>Engine\Resource\Shader</Filter>
     </ClInclude>
-    <ClInclude Include="EHScript.h" />
     <ClInclude Include="EHPlayer.h">
       <Filter>Contents\Scripts\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="EHScript.h">
+      <Filter>Engine\Component\Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="EHBullet.h">
+      <Filter>Contents\Scripts\Bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -188,9 +190,6 @@
     </ClCompile>
     <ClCompile Include="EHGameObject.cpp">
       <Filter>Engine\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="EHBullet.cpp">
-      <Filter>Contents\TestContents</Filter>
     </ClCompile>
     <ClCompile Include="EHTrasnform.cpp">
       <Filter>Engine\Component\Transform</Filter>
@@ -243,9 +242,14 @@
     <ClCompile Include="EHConstantBuffer.cpp">
       <Filter>Engine\Resource\Shader</Filter>
     </ClCompile>
-    <ClCompile Include="EHScript.cpp" />
     <ClCompile Include="EHPlayer.cpp">
       <Filter>Contents\Scripts\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="EHScript.cpp">
+      <Filter>Engine\Component\Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="EHBullet.cpp">
+      <Filter>Contents\Scripts\Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -42,6 +42,7 @@ namespace EH::enums
 	{
 		BackGround
 		, UI
+		, Bullet
 		, Enemy
 		, Player
 		, End

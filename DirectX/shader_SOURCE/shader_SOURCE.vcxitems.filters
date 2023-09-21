@@ -10,6 +10,9 @@
     <Filter Include="Shader\Pixel Shader">
       <UniqueIdentifier>{d482bd6d-61f6-4fda-8088-47c05c6f93f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader\Geometry Shader">
+      <UniqueIdentifier>{f7c072ad-3875-4891-9d67-618f69506dd1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)..\Client\TrianglePS.hlsl">

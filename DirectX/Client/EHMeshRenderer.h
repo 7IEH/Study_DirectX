@@ -18,7 +18,7 @@ namespace EH
 		virtual void Update() override;
 		virtual void Render() override;
 
-		void SetMash(Mesh* mesh) { mMesh = mesh; }
+		void SetMesh(Mesh* mesh) { mMesh = mesh; }
 		void SetShader(Shader* shader) { mShader = shader; }
 
 	private:
