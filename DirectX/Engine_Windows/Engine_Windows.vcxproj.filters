@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Contents">
+      <UniqueIdentifier>{41767323-3af5-4c7c-90de-bd363ac22913}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scripts">
+      <UniqueIdentifier>{a2588e4e-a583-4946-b131-da552eabbda8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scripts\Player">
+      <UniqueIdentifier>{f893d60c-a976-40e9-a607-b06ceb04988b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scripts\Bullet">
+      <UniqueIdentifier>{b11f9a50-4b05-4511-a1f8-3e62f8f685ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scenes">
+      <UniqueIdentifier>{ae69fe51-cf06-412e-86e4-05e744f107a0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Client\EHPlayer.cpp">
+      <Filter>Contents\Scripts\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Client\EHBullet.cpp">
+      <Filter>Contents\Scripts\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Client\EHTestScene.cpp">
+      <Filter>Contents\Scenes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Client\EHPlayer.h">
+      <Filter>Contents\Scripts\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Client\EHBullet.h">
+      <Filter>Contents\Scripts\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Client\EHTestScene.h">
+      <Filter>Contents\Scenes</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

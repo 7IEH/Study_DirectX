@@ -5,7 +5,11 @@ VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Client", "Client\Client.vcxproj", "{0E646996-D80F-41D3-829C-782ED50696E5}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "shader_SOURCE", "shader_SOURCE\shader_SOURCE.vcxitems", "{B8616747-DC8A-4991-A6EE-22EF755089E9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shader_SOURCE", "shader_SOURCE\shader_SOURCE.vcxitems", "{B8616747-DC8A-4991-A6EE-22EF755089E9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine_SOURCE", "Engine_SOURCE\Engine_SOURCE.vcxitems", "{D18A7FD0-A3A7-499B-AB89-C938A61B5CB8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine_Windows", "Engine_Windows\Engine_Windows.vcxproj", "{BD344C1E-7B57-4E04-B169-871D953FC4D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,11 +27,25 @@ Global
 		{0E646996-D80F-41D3-829C-782ED50696E5}.Release|x64.Build.0 = Release|x64
 		{0E646996-D80F-41D3-829C-782ED50696E5}.Release|x86.ActiveCfg = Release|Win32
 		{0E646996-D80F-41D3-829C-782ED50696E5}.Release|x86.Build.0 = Release|Win32
+		{BD344C1E-7B57-4E04-B169-871D953FC4D1}.Debug|x64.ActiveCfg = Debug|x64
+		{BD344C1E-7B57-4E04-B169-871D953FC4D1}.Debug|x64.Build.0 = Debug|x64
+		{BD344C1E-7B57-4E04-B169-871D953FC4D1}.Debug|x86.ActiveCfg = Debug|Win32
+		{BD344C1E-7B57-4E04-B169-871D953FC4D1}.Debug|x86.Build.0 = Debug|Win32
+		{BD344C1E-7B57-4E04-B169-871D953FC4D1}.Release|x64.ActiveCfg = Release|x64
+		{BD344C1E-7B57-4E04-B169-871D953FC4D1}.Release|x64.Build.0 = Release|x64
+		{BD344C1E-7B57-4E04-B169-871D953FC4D1}.Release|x86.ActiveCfg = Release|Win32
+		{BD344C1E-7B57-4E04-B169-871D953FC4D1}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A860BF8C-B315-4E53-91CA-DB18574E02D2}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Engine_SOURCE\Engine_SOURCE.vcxitems*{0e646996-d80f-41d3-829c-782ed50696e5}*SharedItemsImports = 4
+		shader_SOURCE\shader_SOURCE.vcxitems*{b8616747-dc8a-4991-a6ee-22ef755089e9}*SharedItemsImports = 9
+		Engine_SOURCE\Engine_SOURCE.vcxitems*{bd344c1e-7b57-4e04-b169-871d953fc4d1}*SharedItemsImports = 4
+		Engine_SOURCE\Engine_SOURCE.vcxitems*{d18a7fd0-a3a7-499b-ab89-c938a61b5cb8}*SharedItemsImports = 9
 	EndGlobalSection
 EndGlobal

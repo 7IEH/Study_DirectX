@@ -47,6 +47,8 @@ namespace EH
 		Microsoft::WRL::ComPtr<ID3D11DomainShader> mDS;
 		Microsoft::WRL::ComPtr<ID3D11GeometryShader> mGS;
 		Microsoft::WRL::ComPtr<ID3D11PixelShader> mPS;
+
+		//Microsoft::WRL::ComPtr<ID3D11SamplerState> mSampleState;
 	};
 }
 

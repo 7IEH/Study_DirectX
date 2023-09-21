@@ -4,6 +4,7 @@
 
 #include "Commoninclude.h"
 #include "EHApplication.h"
+#pragma comment(lib, "..\\x64\\Debug\\Engine_Windows.lib")
 
 EH::Application application;
 

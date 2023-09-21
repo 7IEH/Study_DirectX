@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{d18a7fd0-a3a7-499b-ab89-c938a61b5cb8}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\Commoninclude.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHComponent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHConstantBuffer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHD3D.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHEntity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHGameObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHInput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHLayer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHMath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHMesh.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHMeshRenderer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHRenderer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHResource.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHResources.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHScene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHSceneManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHScript.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHShader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHTexture.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHTime.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHTrasnform.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHComponent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHConstantBuffer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHD3D.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHEntity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHGameObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHInput.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHLayer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHMesh.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHMeshRenderer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHRenderer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHResource.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHResources.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHScene.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHSceneManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHScript.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHShader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHTexture.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHTime.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHTrasnform.cpp" />
+  </ItemGroup>
+</Project>

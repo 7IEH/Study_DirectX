@@ -135,7 +135,6 @@ namespace EH
 
 
 		// 백버퍼에 렌더링된이미지를 보여줍니다.
-
 		GetDevice()->GetSwapChain()->Present(1, 0);
 	}
 }

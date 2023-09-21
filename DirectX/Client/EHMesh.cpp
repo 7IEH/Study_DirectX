@@ -7,13 +7,16 @@ namespace EH
 	Mesh::Mesh()
 	{
 	}
+
 	Mesh::~Mesh()
 	{
 	}
+
 	HRESULT Mesh::Load(const std::wstring& path)
 	{
 		return E_NOTIMPL;
 	}
+
 	bool Mesh::CreateVertexBuffer(void* data, UINT Count)
 	{
 		mIndexCount = Count;
