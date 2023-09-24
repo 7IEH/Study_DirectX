@@ -64,6 +64,15 @@
     <Filter Include="Engine\Scene">
       <UniqueIdentifier>{9e4f8214-686d-4413-8206-f665ded9bee6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\CollisionMgr">
+      <UniqueIdentifier>{34fe15ff-2593-40bc-8feb-05b5762c96c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\Collider">
+      <UniqueIdentifier>{34a31016-4fe9-4147-8ab9-88e00fd9018e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Component\Rigidbody">
+      <UniqueIdentifier>{217adc61-36b1-4af5-8aa7-980baca57943}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\Commoninclude.h">
@@ -135,6 +144,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHScene.h">
       <Filter>Engine\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EHCollider.h">
+      <Filter>Engine\Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)EHRigidbody.h">
+      <Filter>Engine\Component\Rigidbody</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHTime.cpp">
@@ -196,6 +211,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHScene.cpp">
       <Filter>Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EHCollider.cpp">
+      <Filter>Engine\Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)EHRigidbody.cpp">
+      <Filter>Engine\Component\Rigidbody</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

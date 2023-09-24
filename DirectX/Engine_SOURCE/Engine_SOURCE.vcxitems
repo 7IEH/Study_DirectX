@@ -37,6 +37,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)..\Client\EHTrasnform.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EHCollider.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)EHRigidbody.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHApplication.cpp" />
@@ -59,5 +61,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)..\Client\EHTrasnform.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EHCollider.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)EHRigidbody.cpp" />
   </ItemGroup>
 </Project>
